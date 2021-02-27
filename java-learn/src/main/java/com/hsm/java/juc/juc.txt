@@ -1,0 +1,11 @@
+1. 实现线程的方法:
+    继承Thread方法
+    实现Runable接口
+    实现Callable接口
+    通过线程池的方式执行
+2. Runnable与callable区别
+    1.Runnable 没有参数返回
+      callable 有参数返回
+    2.Runnable 不抛异常
+      callable 抛异常
+    3.Thread方法没有callable接口得构造方法
