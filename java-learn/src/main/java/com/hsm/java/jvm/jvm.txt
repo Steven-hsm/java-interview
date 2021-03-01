@@ -1,0 +1,20 @@
+jvm 内置常用命令
+    jinfo -flag
+    jps
+jvm 常用参数配置：
+   -XX:+PrintGCDetails          打印GC日志
+   -XX：InitialHeapSize  -Xms    初始化堆内存
+   -XX:MaxHeapSize       -Xmx   最大初始化堆内存
+   -XX:+PrintFlagsInitial       查看参数盘点家底(默认值)
+   -XX:+PrintFlagsFinal         查看参数盘点家底(最终修改的值)
+   -XX:+PrintCommandLineFlags   打印命令行参数
+   -XX:+ThreadStackSize  -Xss   线程堆栈大小,
+   -XX：+MetaspaceSize          设置元空间大小，与永久代类似，都是JVm规范中方法区的实现。元空间并不在虚拟机中，而是使用本地内存，默认元空间的大小仅受本地内存的限制
+   -XX:+MaxTenuringThreshold    设置垃圾最大年龄
+
+
+
+
+
+
+
