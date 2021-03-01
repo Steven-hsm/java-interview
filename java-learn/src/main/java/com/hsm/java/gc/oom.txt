@@ -1,0 +1,8 @@
+java中常见的线程异常
+java.lang.StackOverflowError    栈异常
+java.lang.OutOfMemoryError      堆异常java heap error
+java.lang.OutOfMemoryError      回收效率极低GC overhead limit exceeded
+java.lang.OutOfMemoryError      直接内存direct buffer memory
+java.lang.OutOfMemoryError      内存爆了unable to creat new native thread
+java.lang.OutOfMemoryError      一个应用进程创建过多的线程unable to creat new native thread
+java.lang.OutOfMemoryError      元空间Metaspace

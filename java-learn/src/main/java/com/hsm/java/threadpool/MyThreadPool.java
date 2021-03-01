@@ -12,6 +12,8 @@ import java.util.concurrent.Executors;
 public class MyThreadPool {
 
     public static void main(String[] args) {
+        printInfo();
+
         ExecutorService pool1 = Executors.newFixedThreadPool(5);
         ExecutorService pool2 = Executors.newSingleThreadExecutor();
         ExecutorService pool = Executors.newCachedThreadPool();
@@ -35,7 +37,7 @@ public class MyThreadPool {
      * @auther: senming.huang
      * @date: 2021/2/27 16:21
      */
-    public void printInfo() {
+    public static void printInfo() {
         System.out.println("CPU核数:" + Runtime.getRuntime().availableProcessors());
         System.out.println("当前线程数:" + Thread.activeCount());
     }

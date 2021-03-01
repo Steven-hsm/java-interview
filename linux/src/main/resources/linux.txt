@@ -1,0 +1,16 @@
+整机:
+    top 系统性能命令
+    uptime 系统性能命令的精简版
+CPU:
+    vmstat
+    mpstat 查看所有CPU的信息
+    pidstat 进程使用CPU用量分解情况
+内存:
+    free -m
+硬盘:
+    df 查看磁盘空间
+    df -h
+磁盘io:
+    iostat -xdk 2 3
+网络io:
+    ifstat
