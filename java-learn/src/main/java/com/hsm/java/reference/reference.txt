@@ -4,3 +4,5 @@
 软应用（内存足够的，不会被回收，不够用就回收） 缓存
 弱应用（只要有gc就一定会回收）              WeakHashMap
 虚引用（形同虚设）不能单独使用，需要和应用队列referenceQueue联合使用
+
+referenceQueue gc之前，软，弱，虚应用会被放到referenceQueue中保存
