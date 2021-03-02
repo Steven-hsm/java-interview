@@ -12,6 +12,7 @@
      <modules>
          <module>java-learn</module>
          <module>linux</module>
+         <module>mysql</module>
      </modules>
 
     <dependencies>
