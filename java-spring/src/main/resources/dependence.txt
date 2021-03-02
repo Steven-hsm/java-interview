@@ -1,0 +1,18 @@
+循环依赖：
+    多个bean之间相互依赖，形成一个闭环 A依赖于B，B依赖于C，C依赖于A
+    通常情况，如果问spring容器内部如何解决循环依赖，一定是默认的单例bean中，属性互相引用的场景。
+
+    构造方法注入可能造成依赖注入的问题，构造器依赖注入无法解决
+
+    默认的单例的场景是支持循环依赖的，不报错
+    原型，的场景不支持循环依赖，保错
+
+    spring内部通过3级缓存来解决循环依赖  DefaultSingletonBeanRegister
+    第一级缓存：单例池，存放已经经历了完整生命周期的bean对象
+    第二级缓存:存放早起暴露出来的Bean对象，Bean的声明周期未结束（属性没有填充完)
+    第三级缓存:存放可以生成bean的工厂
+
+    实例化：new 一片空间
+    初始化:属性填充
+
+    getSingleton -> doCreateBean -> populateBean -> addSingleton

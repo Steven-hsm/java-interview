@@ -13,6 +13,8 @@
          <module>java-learn</module>
          <module>linux</module>
          <module>mysql</module>
+         <module>java-spring</module>
+         <module>spring-aop</module>
      </modules>
 
     <dependencies>

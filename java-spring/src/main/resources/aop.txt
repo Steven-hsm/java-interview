@@ -1,0 +1,14 @@
+AOP常用注解:
+    Before              前置通知,目标方法执行前
+    After               后置通知，目标方法执行后
+    AfterReturning      返回通知，执行方法结束前执行
+    AfterThrowing       异常通知，出现异常时执行
+    Around              环绕通知，环绕目标方法执行
+
+spring4 ===> spring 5执行顺序，有哪些坑
+spring4
+    正常情况：环绕A -> before -> 函数执行 -> 环绕B -> after -> afterReturning
+    异常情况：环绕A -> before -> after -> afterThrowing
+spring5
+    正常情况：环绕A -> before -> 函数执行 -> afterReturning -> after -> 环绕B
+    异常情况：before -> afterThrowing -> after
