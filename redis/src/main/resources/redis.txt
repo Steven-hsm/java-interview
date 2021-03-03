@@ -1,0 +1,37 @@
+查看redis版本
+    redis-server -v
+    info(进入redis命令界面)
+redis常用的五大数据类型:
+    String
+    list
+    hash
+    set
+    zset
+    bitmap
+    hyperloglog
+    geospatial
+    stream
+命令不区分大小写，key区分大小
+help @类型名
+String：
+    set key value
+    get key
+    mset key1 value1 key2 value2 ...
+    mget key1 key2 key3
+    incr key
+    incrby key increment
+    decr key
+    decrby key decrement
+    strlen key
+    setnx key value
+    set key value [ex seconds] [PX millisenconds] [NX] [XX]
+hash：
+    hset key hashkey value
+    hget key hashkey
+list:
+    lpush key value1 value2 value3
+    rpush key value1 value2 value3
+    lrange key start end
+    llen key
+
+redis分布式锁需要注意什么问题
