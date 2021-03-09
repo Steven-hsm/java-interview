@@ -10,11 +10,11 @@ public class BinaryTreeSearch {
     public static void main(String[] args) {
         BinaryTreeSearch binaryTreeSearch = new BinaryTreeSearch();
         int[] arr = {1, 2, 3, 4, 5, 6, 7};
-        binaryTreeSearch.preOrder(arr,0);
+        binaryTreeSearch.preOrder(arr, 0);
         System.out.println();
-        binaryTreeSearch.infixOrder(arr,0);
+        binaryTreeSearch.infixOrder(arr, 0);
         System.out.println();
-        binaryTreeSearch.postOrder(arr,0);
+        binaryTreeSearch.postOrder(arr, 0);
 
     }
 
@@ -40,6 +40,7 @@ public class BinaryTreeSearch {
 
     /**
      * 功能描述:中序遍历
+     *
      * @auther: senming.huang
      * @date: 2021/3/8 14:23
      */
@@ -64,6 +65,7 @@ public class BinaryTreeSearch {
 
     /**
      * 功能描述:后序遍历
+     *
      * @auther: senming.huang
      * @date: 2021/3/8 14:23
      */
@@ -80,6 +82,18 @@ public class BinaryTreeSearch {
         }
         if (index < arr.length) {
             System.out.print(arr[index] + "\t");
+        }
+    }
+
+    /**
+     * 功能描述:中序遍历
+     *
+     * @auther: senming.huang
+     * @date: 2021/3/8 14:23
+     */
+    public void levelOrder(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + "\t");
         }
     }
 }
