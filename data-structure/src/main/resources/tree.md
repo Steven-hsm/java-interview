@@ -81,70 +81,70 @@ public class CSNodeTree {
 
 ```java
 public void preOrder(int[] arr, int index) {
-    if (arr == null && arr.length == 0) {
+        if (arr == null && arr.length == 0) {
         System.out.println("数组为空");
         return;
-    }
-    System.out.print(arr[index] + "\t");
-    if ((index * 2 + 1) < arr.length) {
+        }
+        System.out.print(arr[index] + "\t");
+        if ((index * 2 + 1) < arr.length) {
         preOrder(arr, index * 2 + 1);
-    }
-    if ((index * 2 + 2) < arr.length) {
+        }
+        if ((index * 2 + 2) < arr.length) {
         preOrder(arr, index * 2 + 2);
-    }
-}
+        }
+        }
 ```
 
 中序遍历
 
 ```java
 public void infixOrder(int[] arr, int index) {
-    if (arr == null && arr.length == 0) {
+        if (arr == null && arr.length == 0) {
         System.out.println("数组为空");
         return;
-    }
-    //先遍历左子树 （index*2+1）
-    if ((index * 2 + 1) < arr.length) {
+        }
+        //先遍历左子树 （index*2+1）
+        if ((index * 2 + 1) < arr.length) {
         infixOrder(arr, index * 2 + 1);
-    }
-    if (index < arr.length) {
+        }
+        if (index < arr.length) {
         System.out.print(arr[index] + "\t");
-    }
+        }
 
-    if ((index * 2 + 2) < arr.length) {
+        if ((index * 2 + 2) < arr.length) {
         infixOrder(arr, index * 2 + 2);
-    }
-}
+        }
+        }
 ```
 
 后续遍历
 
 ```java
 public void postOrder(int[] arr, int index) {
-    if (arr == null && arr.length == 0) {
+        if (arr == null && arr.length == 0) {
         System.out.println("数组为空");
         return;
-    }
-    if ((index * 2 + 1) < arr.length) {
+        }
+        if ((index * 2 + 1) < arr.length) {
         postOrder(arr, index * 2 + 1);
-    }
-    if ((index * 2 + 2) < arr.length) {
+        }
+        if ((index * 2 + 2) < arr.length) {
         postOrder(arr, index * 2 + 2);
-    }
-    if (index < arr.length) {
+        }
+        if (index < arr.length) {
         System.out.print(arr[index] + "\t");
-    }
-}
+        }
+        }
 ```
 
 层序遍历
 
 ```java
 public void levelOrder(int[] arr) {
-    for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
         System.out.print(arr[i] + "\t");
-    }
-}
+        }
+        }
 ```
 
 ### 2.1 平衡二叉树
@@ -163,11 +163,16 @@ public void levelOrder(int[] arr) {
 2. 二叉树以某种次序遍历使其变为线索二叉树的过程称为线索化
 
 ### 2.3 B树（B-树）
-B树属于多叉树又名平衡多路查找树，数据库索引技术里大量使用者B树和B+树的数据结构
+
+B树（英语：B-tree）是一种自平衡的树，能够保持数据有序.这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。
+
+B树属于多叉树又名平衡多路查找树，数据库索引技术里大量使用者B树和B+树的数据结构.(内容存盘，会因为树的深度过大而造成磁盘IO读写过于频繁)
 1. 所有节点关键字是按递增次序排列，并遵循左小右大原则
-2. 非叶节点的子节点数>1，且<=M ，且M>=2，空树除外（注：M阶代表一个树节点最多有多少个查找路径，M=M路,当M=2则是2叉树,M=3则是3叉）
-3. 关键字数：枝节点的关键字数量大于等于ceil(m/2)-1个且小于等于M-1个（注：ceil()是个朝正无穷方向取整的函数 如ceil(1.1)结果为2);
-4. 所有叶子节点均在同一层、叶子节点除了包含了关键字和关键字记录的指针外也有指向其子节点的指针只不过其指针地址都为null对应下图最后一层节点的空格子;
+2. 树中每个结点最多含有m个孩子（m>=2）；
+3. 除根结点和叶子结点外，其它每个结点至少有[ceil(m / 2)]个孩子（其中ceil(x)是一个取上限的函数）；
+4. 若根结点不是叶子结点，则至少有2个孩子
+5. 所有叶子结点都出现在同一层(最底层)，**叶子结点为外部结点，保存内容，即key和value**。
+6. **其他结点为内部结点，保存索引，即key和next**。
 
 ### B+树
 
@@ -201,4 +206,93 @@ B*树是B+树的变种
 哈夫曼树结点个数：n=2N0-1
 
 哈夫曼树主要应用在哈夫曼编码中。左分支为0，右分支为1
+
+
+
+```java
+/**
+ * 哈夫曼树
+ */
+public class HuffmanTree {
+    public Node generateTree(Map<String, Integer> frequencyForData) {
+        //1.优先队列，会根据泛型对象的compareTo方法进行排序
+        PriorityQueue<Node> priorityQueue = new PriorityQueue<>();
+        //2.将叶子结点放入到优先级队列中
+        for (String str : frequencyForData.keySet()) {
+            priorityQueue.add(new Node(str, frequencyForData.get(str)));
+        }
+
+        //将数据放入树种，最终的那棵树就是哈夫曼树
+        while (priorityQueue.size() != 1) {
+            Node minNode1 = priorityQueue.poll();
+            Node minNode2 = priorityQueue.poll();
+            priorityQueue.add(new Node(minNode1, minNode2, minNode1.freq + minNode2.freq));
+        }
+        //队列中最后一个就是生成的哈夫曼树
+        return priorityQueue.poll();
+    }
+
+    public Map<String, String> encodeReal(Node root) {
+        Map<String, String> encodingResult = new HashMap<>();
+        encodeChar(root, "", encodingResult);
+        return encodingResult;
+    }
+
+    private void encodeChar(Node node, String encoding, Map<String, String> encodingResult) {
+        if (node.isLeaf) {
+            encodingResult.put(node.data, encoding);
+            return;
+        }
+        encodeChar(node.left, encoding + "0", encodingResult);
+        encodeChar(node.right, encoding + "1", encodingResult);
+    }
+
+    public static void main(String[] args) {
+        HuffmanTree huffmanTree = new HuffmanTree();
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("A", 27);
+        map.put("B", 8);
+        map.put("C", 15);
+        map.put("D", 15);
+        map.put("E", 30);
+        map.put("F", 5);
+        Node node = huffmanTree.generateTree(map);
+        Map<String, String> encodeResult = huffmanTree.encodeReal(node);
+        encodeResult.forEach((key,value)->{
+            System.out.println(key + ":\t" + value);
+        });
+    }
+}
+
+/**
+ * 哈夫曼树的结点
+ */
+class Node implements Comparable<Node> {
+    String data;         //实际数据
+    int freq;           //频数
+    boolean isLeaf;     //是否叶子结点
+    Node left, right;    //左右结点
+
+    public Node(String data, int freq) {
+        this.data = data;
+        this.freq = freq;
+        this.isLeaf = true;
+    }
+
+    public Node(Node left, Node right, int freq) {
+        this.freq = freq;
+        this.left = left;
+        this.right = right;
+        this.isLeaf = false;
+    }
+
+    @Override
+    public int compareTo(Node o) {
+        return this.freq - o.freq;
+    }
+}
+```
+
+
 
