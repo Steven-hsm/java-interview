@@ -14,7 +14,6 @@
          <module>linux</module>
          <module>mysql</module>
          <module>java-spring</module>
-         <module>spring-aop</module>
          <module>redis</module>
          <module>data-structure</module>
          <module>docker</module>

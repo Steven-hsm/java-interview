@@ -15,6 +15,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-aop</module>
+        <module>spring-elasticsearch</module>
     </modules>
     <dependencies>
         <!-- 测试类 -->
