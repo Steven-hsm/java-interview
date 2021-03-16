@@ -197,12 +197,78 @@ cat /etc/os-release
 
 
 
-
 ## Docker 命令
 
+* 帮助命令
+
+  ```shell
+  docker version 		# 显示docker的版本信息
+  docker info 		# 显示docker的系统信息，包括镜像和容器数量
+  docker 命令 --help   # 帮助命令
+  ```
+
+  帮助文档，看官方文档
+
 * 镜像命令
+
+  ```shell
+  docker images   # 查看所有本地的主机上的镜像
+  # 可选项
+  -a ,--all 		# 列出所有的镜像
+  -q ,--quiet		# 只显示镜像的id
+  
+  docker search 镜像	# 搜索镜像
+  # 可选项
+  --filter=stars=3000
+  
+  docker pull 镜像:tag 	# 下载镜像
+  # docker是分层下载，docker image的核心，联合文件系统
+  
+  docker rmi 			# 删除镜像
+  docker rmi -f $(docker images -aq) 	# 删除全部的容器
+  ```
+
 * 容器命令
+
+  * 我们有了镜像才可以创建容器
+
+  ```shell
+  docker run [可选参数] image # 运行镜像，运行起来的即为容器
+  ## 参数说明
+  --name="Name"		# 容器名称
+  -d					# 后台守护进程的方式运行
+  -it					# 使用交互方式运行，进入容器查看内容
+  -p					# 指定容器的端口
+  	-p 主机端口：容器端口
+  -P					# 指定随机端口
+  
+  docker ps				# 列出当前正在运行的容器
+  ## 可选参数
+  -a				# 列出当前正在运行的容器+带出历史运行过的容器
+  -n=?			# 显示最近创建的容器
+  -q				# 只显示容器的编号
+  
+  docker rm 容器id	# 删除容器,不能删除正在运行中的容器，需要加-f参数
+  docker rm -f $(docker ps -aq) # 删除所有的容器
+  docker ps -a -q | xargs docker rm # 删除所有的容器
+  
+  docker start 容器id 	# 启动容器
+  docker restart 容器id # 重启容器
+  docker stop 容器id	# 停止当前正在运行的容器
+  docker kill 容器id	# 强制停止当前容器
+  ```
+
+  
+
 * 操作命令
+
+  * docker容器使用后台运行，就必须有一个前台进程，docker发现没有应用，就会自动停止
+
+  ```shell
+  
+  ```
+
+  
 
 ## Docker镜像
 
