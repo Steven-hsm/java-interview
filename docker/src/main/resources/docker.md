@@ -260,23 +260,133 @@ cat /etc/os-release
 
   
 
-* 操作命令
+* 其他常用操作命令
 
   * docker容器使用后台运行，就必须有一个前台进程，docker发现没有应用，就会自动停止
 
   ```shell
+  docker logs -f -t --tail 100 容器
+  # 可选参数
+-tf				# 显示日志
+  --tail number 	# 显示日志条数
   
+  docker top 容器	# 查看容器的进程信息
+  
+  docker inspect 容器# 查看容器的信息
+  
+  docker exec -it 容器 /bin/bash	# 进入当前正在运行的容器，开启一个新的终端，可以在里面操作
+  
+  docker attach -it 容器			# 进入正在执行的代码。不会启动新的进程
+  
+  docker cp 容器id:容器内路径 容器外路径	# 将容器的数据拷贝到外部数据
+  ```
+  
+  ![image-20210317215742076](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210317215742076.png)
+
+## 可视化
+
+* portainer
+  * docker图像化管理工具，提供一个后台面板供我们操作
+* Rancher（CI/CD再用）
+
+## Docker镜像
+
+**镜像是什么**
+
+镜像是一种轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含运行某个软件所需的所有内容，包括代码，运行时库，环境变量和配置环境
+
+所有的应用，直接打包docker镜像，就可以直接运行
+
+> 获取镜像
+
+* 远程仓库
+* 拷贝
+* 自己制作
+
+**UnionFS(联合文件系统)**
+
+UnionFS（联合文件系统）：Union文件系统是一种分层、轻量级并且高性能的文件系统，它支持对文件系统的修改作为一次提交来一层层的叠加，同时可以将不同目录挂载到同一个虚拟文件系统下，Union文件系统是Dokcer镜像的基础。镜像可以通过分层来进行继承，基于基础镜像（没有父镜像），可以制作各种具体的镜像。
+
+特性：一次同时加载多个文件系统，但从外面看起来，只能看到一个文件系统，联合加载会把各层文件系统加载起来，这样最终的文件系统会包含所有的底层文件和目录
+
+**Docker镜像加载原理**
+
+docker的镜像实际上是由一层一层的文件系统构成，这种层级的文件系统UnionFS。
+
+主要包含bootloader和kernelbootloader主要是引导加载kernel，Linux刚启动时会加载bootfs文件系统，在Docker镜像的最底层是bootfs。这一层与我们典型的linux/unix系统是一样的，包含boot加载器内核。当boot加载完之后整个内核就都在内存中了，此时内存的使用权已经由bootfs交给内核了，此时系统也会卸载bootfs
+
+roorfs （root file system），在bootfs之上。包含的就是典型Linux系统中的 /dev ，/proc，/bin ，/etx 等标准的目录和文件。rootfs就是各种不同的操作系统发行版。比如Ubuntu，Centos等等。
+
+　　对于一个精简的OS，rootfs可以很小，只需要包括最基本的命令、工具和程序库就可以了，因为底层直接用Host（宿主机）的kernel，自己只需要提供rootfs就行了，由此可见对于不同的Linux发行版，bootfs基本是一致的，rootfs会有差别，因此不同的发行版可以公用bootfs。
+
+> 特点
+
+docker 镜像都是只读的，当容器启动时，一个新的可写层呗加载到镜像的顶部
+
+这一层就是我们通常说的容器层，容器之下的都叫镜像层
+
+**提交自己的镜像**
+
+```shell
+docker commit # 提交容器称为一个新的副本
+docker commit -m="提交的描述信息" -a="作者" 容器id 镜像名：tag
+```
+
+## 容器数据卷
+
+**什么是容器数据卷**
+
+数据在容器中，删除容器之后，数据就会丢失
+
+容器之间可以有一个数据共享的技术！Docker容器中产生的数据，同步到本地
+
+卷技术，目录的挂载，将我们容器类的目录，挂载到Linux上面
+
+> 总结一句话：容器的持久化和同步操作！容器间也可以数据共享
+
+**使用数据卷**
+
+* 命令挂载（本地修改后，容器中就会自动修改）
+
+  ```shell
+  docker run -it -v 主机目录：容器目录
+  ```
+
+* mysql 实战
+
+  ```shell
+  docker run -d -p 3306:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql mysql:5.7
+  ```
+
+* 具名挂载与匿名挂载
+
+  ```shell
+  # 匿名挂载
+  -v 容器内路径
+  docker run -d -P --name nginx01 -v /etc/nginx nginx
+  
+  docker volumn ls	# 查看所有的volumn的情况
+  docker inspect 容器	# 查看具体的映射
+  
+  # 具名挂载 
+  docker run -d -P --name nginx02 -v juming-nginx:/etc/nginx nginx
+  
+  所有的docker容器内的卷，没有指定目录的情况下都在/var/lib/docker/volumes/xxxxx/_data
+  # 读写权限
+  可以 -v 容器内路径：ro rw 改变读写权限
+  ro read only 
+  rw read write
   ```
 
   
 
-## Docker镜像
-
-## 容器数据卷
-
 ## DockerFile
 
 ## Docker网络原理
+
+
+
+# 企业实战
 
 ## IDEA整合Docker
 
