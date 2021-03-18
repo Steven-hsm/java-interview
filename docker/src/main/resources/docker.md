@@ -3,7 +3,6 @@
 [学习地址]( https://www.bilibili.com/video/BV1og4y1q7M4?p=2&amp;spm_id_from=pageDriver）
 
 
-
 ## Docker 概述
 
 **Docker为什么会出现**
@@ -381,6 +380,80 @@ docker commit -m="提交的描述信息" -a="作者" 容器id 镜像名：tag
   
 
 ## DockerFile
+
+就是用来构建docker镜像的构建文件！命令脚本(通过脚本生成镜像)
+
+dockerfile01
+
+```shell
+FROM centos
+
+VOLUME ["volume01","volume02"]
+CMD echo "-----end-----"
+CMD /bin/bash
+```
+
+创建镜像
+
+```shell
+docker build -f dockerfile01 -t kuangshen/centos:1.0 .
+```
+
+查看匿名挂载的卷
+
+```shell
+docker inspect
+```
+
+**构建步骤**
+
+1. 编写一个dockerfile文件
+2. docer build构建成为一个镜像
+3. docker run 运行镜像
+4. docker push 发布镜像
+
+很多官方镜像都是基础包，很多功能没有。我们通常会自己搭建自己的镜像
+
+**DockerFile构建过程**
+
+* 基础知识：
+  * 每个保留关键字（指令）都必须是大写字母
+  * 执行从上到下顺序执行
+  * #表示注释
+  * 每个指令都会创建提交一个新的镜像层，并提交
+* dockerfile是面向开发的，我们以后要发布项目，做镜像，就需要编写dockerfile文件，这个文件十分简单
+* 步骤
+  * DockerFile: 构建文件，定义了一切的步骤，源代码
+  * DockerImages：通过DockerFile构建生成的镜像，最终发布和运行的产品
+  * Docker容器：容器是镜像运行起来提供服务的
+
+**DockerFile的指令**
+
+```shell
+FROM 		# 基础镜像，一起从这里开始构建
+MAINTAINER	# 镜像作者，姓名+邮箱
+RUN			# 镜像构建的时候需要运行的命令
+ADD			# 步骤：tomcat镜像，这个tomcat压缩包，添加内容
+WORKDIR		# 镜像的工作目录
+VOLUME		# 挂载的目录
+EXPOST		# 暴露端口配置
+CMD			# 指定这个容器启动的时候要运行的命令，只有最后一个会生效，可被替代
+ENTRYPOINT	# 指定这个容器启动的时候要运行的命令，可以追加命令
+ONBUILD		# 当构建一个被继承DockerFile这个时候就会运行ONBUILD的指令，触发指令
+COPY		# 类似ADD，将文件拷贝到镜像中
+ENV			# 构建的时候设置环境变量
+```
+
+Docker hub中99%镜像都是从这个基础镜像过来的 FROM scratch,然后配置需要的软件和配置来进行的构建
+
+> CMD和ENTRYPOINT区别
+>
+> CMD指定这个容器启动的时候要运行的命令，只有最后一个会生效，可被替代
+>
+> ENTRYPOINT指定这个容器启动的时候要运行的命令，可以追加命令。追加命令直接放在ENTRYPOINT 命令后
+
+
+
 
 ## Docker网络原理
 
