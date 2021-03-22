@@ -509,13 +509,5 @@ docker network create --driver bridge --subnet 192.168.0.0/16 192168.0.1 mynet
 
 ## IDEA整合Docker
 
-## Docker Compose
-
-## Docker Swarm
-
-简化版的k8s
-
-## CI\CD jenkins
-
 
 
