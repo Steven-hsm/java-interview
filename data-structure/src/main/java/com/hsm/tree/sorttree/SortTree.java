@@ -1,6 +1,5 @@
 package com.hsm.tree.sorttree;
 
-import com.hsm.tree.avl.AVLNode;
 import lombok.Getter;
 
 /**
