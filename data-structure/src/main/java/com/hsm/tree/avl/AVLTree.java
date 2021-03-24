@@ -1,9 +1,11 @@
 package com.hsm.tree.avl;
 
 import com.hsm.tree.sorttree.SortTree;
+import lombok.Data;
 import lombok.Getter;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @description:
@@ -144,23 +146,56 @@ public class AVLTree {
         }
     }
 
-    public void printSimple(AVLNode root) {
-        Map<Integer, List<Integer>> map = new HashMap<>();
-        int index = 1;
-        insertMap(root, 1, map);
-        map.values().forEach(System.out::println);
+    @Data
+    class PrintNode {
+        private int data;
+        private int printInterval;
     }
 
-    public void insertMap(AVLNode node, int index, Map<Integer, List<Integer>> map) {
-        List<Integer> list = Optional.ofNullable(map.get(index)).orElse(new ArrayList<>());
-        list.add(node.data);
-        map.put(index,list);
-        index ++ ;
-        if(node.left !=null){
-            insertMap(node.left,index,map);
+    int left = 0;
+
+    public void printSimple(AVLNode root) {
+        Map<Integer, List<PrintNode>> map = new HashMap<>();
+        int index = 1;
+        insertMap(root, 1, map, 0);
+        map.values().forEach(printNodes -> {
+            System.out.println(printNodes.stream().map(PrintNode::getData).collect(Collectors.toList()));
+        });
+    }
+
+    public void printGraph(AVLNode root) {
+        Map<Integer, List<PrintNode>> map = new HashMap<>();
+        int index = 1;
+        insertMap(root, 1, map, 0);
+        map.values().forEach(printNodes -> {
+            int alreadyPrint = 0;
+            for (int i = 0; i < printNodes.size(); i++) {
+                PrintNode printNode = printNodes.get(i);
+                for (int j = alreadyPrint; j < printNode.printInterval-left; j++) {
+                    System.out.print("\t");
+                    alreadyPrint++;
+                }
+                System.out.print(printNode.data);
+            }
+            System.out.println();
+        });
+    }
+
+    public void insertMap(AVLNode node, int index, Map<Integer, List<PrintNode>> map, int printInterval) {
+        List<PrintNode> list = Optional.ofNullable(map.get(index)).orElse(new ArrayList<>());
+        PrintNode printNode = new PrintNode();
+        printNode.setData(node.data);
+        printNode.setPrintInterval(printInterval);
+        list.add(printNode);
+        map.put(index, list);
+
+        index++;
+        if (node.left != null) {
+            left = Math.min(left,printInterval - 1);
+            insertMap(node.left, index, map, printInterval - 1);
         }
-        if(node.right !=null){
-            insertMap(node.right,index,map);
+        if (node.right != null) {
+            insertMap(node.right, index, map, printInterval + 1);
         }
     }
 }

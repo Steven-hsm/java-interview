@@ -20,6 +20,7 @@ public class AVLTreeTest {
         avlTree.preOrder(avlTree.getRoot());
         System.out.println();
         avlTree.printSimple(avlTree.getRoot());
+        avlTree.printGraph(avlTree.getRoot());
     }
 
 }
