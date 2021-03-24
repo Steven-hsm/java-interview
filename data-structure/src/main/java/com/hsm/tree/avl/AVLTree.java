@@ -3,6 +3,8 @@ package com.hsm.tree.avl;
 import com.hsm.tree.sorttree.SortTree;
 import lombok.Getter;
 
+import java.util.*;
+
 /**
  * @description:
  * @author: huangsm
@@ -16,22 +18,22 @@ public class AVLTree {
     private AVLNode root;
 
 
-    public void insert(AVLNode node, int data){
+    public void insert(AVLNode node, int data) {
         //小于节点往左边插入
-        if(data < node.data){
-            if(node.left == null){
+        if (data < node.data) {
+            if (node.left == null) {
                 node.left = new AVLNode(data);
                 node.left.parent = node;
-            }else{
-                insert(node.left,data);
+            } else {
+                insert(node.left, data);
             }
             //其他，往右边插入
-        }else{
-            if(node.right == null){
+        } else {
+            if (node.right == null) {
                 node.right = new AVLNode(data);
                 node.right.parent = node;
-            }else{
-                insert(node.right,data);
+            } else {
+                insert(node.right, data);
             }
         }
 
@@ -39,17 +41,17 @@ public class AVLTree {
         node.balance = calcBalance(node);
 
         // 左子树高，应该右旋
-        if (node.balance >= 2){
+        if (node.balance >= 2) {
             // 右孙高，先左旋
-            if (node.left.balance == -1){
+            if (node.left.balance == -1) {
                 left_rotate(node.left);
             }
             right_rotate(node);
         }
         // 右子树高，左旋
-        if (node.balance <= -2){
+        if (node.balance <= -2) {
             // 左孙高，先右旋
-            if (node.right.balance == 1){
+            if (node.right.balance == 1) {
                 right_rotate(node.right);
             }
             left_rotate(node);
@@ -66,18 +68,18 @@ public class AVLTree {
         int left_depth;
         int right_depth;
         //左子树深度
-        if (node.left != null){
+        if (node.left != null) {
             left_depth = node.left.depth;
-        }else {
+        } else {
             left_depth = 0;
         }
         //右子树深度
-        if (node.right != null){
+        if (node.right != null) {
             right_depth = node.right.depth;
-        }else {
+        } else {
             right_depth = 0;
         }
-        return Math.max(left_depth ,right_depth) + 1;
+        return Math.max(left_depth, right_depth) + 1;
     }
 
     private void left_rotate(AVLNode left) {
@@ -88,32 +90,33 @@ public class AVLTree {
         int left_depth;
         int right_depth;
         //左子树深度
-        if (node.left != null){
+        if (node.left != null) {
             left_depth = node.left.depth;
-        }else {
+        } else {
             left_depth = 0;
         }
         //右子树深度
-        if (node.right != null){
+        if (node.right != null) {
             right_depth = node.right.depth;
-        }else {
+        } else {
             right_depth = 0;
         }
         return left_depth - right_depth;
     }
 
-    public void insert(int data){
-        if(root == null){
+    public void insert(int data) {
+        if (root == null) {
             root = new AVLNode(data);
             return;
         }
-        insert(root,data);
+        insert(root, data);
     }
+
     /**
      * 先序遍历
      */
-    public void preOrder(AVLNode node){
-        if(node == null){
+    public void preOrder(AVLNode node) {
+        if (node == null) {
             return;
         }
         preOrder(node.left);
@@ -132,12 +135,32 @@ public class AVLTree {
         public AVLNode left;//指向左子树
         public AVLNode right;//指向右子树
 
-        public AVLNode(int data){
+        public AVLNode(int data) {
             this.data = data;
             depth = 1;
             balance = 0;
             left = null;
             right = null;
+        }
+    }
+
+    public void printSimple(AVLNode root) {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        int index = 1;
+        insertMap(root, 1, map);
+        map.values().forEach(System.out::println);
+    }
+
+    public void insertMap(AVLNode node, int index, Map<Integer, List<Integer>> map) {
+        List<Integer> list = Optional.ofNullable(map.get(index)).orElse(new ArrayList<>());
+        list.add(node.data);
+        map.put(index,list);
+        index ++ ;
+        if(node.left !=null){
+            insertMap(node.left,index,map);
+        }
+        if(node.right !=null){
+            insertMap(node.right,index,map);
         }
     }
 }

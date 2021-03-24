@@ -18,8 +18,8 @@ public class AVLTreeTest {
 
         //先序遍历会将排序二叉树顺序打印
         avlTree.preOrder(avlTree.getRoot());
-
-
+        System.out.println();
+        avlTree.printSimple(avlTree.getRoot());
     }
 
 }
