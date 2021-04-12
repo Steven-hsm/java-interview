@@ -56,6 +56,13 @@
    rm -f /mongodb/single/data/db/*.lock # 删除lock文件
    /usr/local/mongdb/bin/mongod --repair --dbpath=/mongodb/single/data/db #修复数据
    ```
+   
+9. 关闭mongo服务
+
+   ```shell
+   # 进入命令，输入db.shutdownServer();
+   mongod  --shutdown  --dbpath /usr/mongodb/data
+   ```
 
 #### 2. 基本命令
 

@@ -1,190 +1,189 @@
-#### 1. 安装
+### 1. 副本集
 
-1. 下载安装包
+* 一组维护相同数据集的mongod服务
 
-   ```shell
-   wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel80-4.4.1.tgz
-   ```
+* 提供冗余和高可用性
 
-2. 解压
+* 主从集群和副本集最大的区别就是副本集没有固定的“主节点”；整个集群会选出一个“主节点”，当其挂
 
-   ```shell
-   tar -zxvf mongodb-linux-x86_64-rhel80-4.4.1.tgz #解压
-   ```
+  掉后，又在剩下的从节点中选中其他节点为“主节点”，副本集总有一个活跃点(主、primary)和一个或多
 
-3. 重命名
+  个备份节点(从、secondary)。
 
-   ```shell
-   mv mongodb-linux-x86_64-rhel80-4.4.1  /opt/mongodb4  #移动文件
-   ```
+**两种类型**
 
-4. 配置环境变量
+* 主节点：数据操作的主要连接点，可读写
+* 从节点：数据冗余备份节点，可以读或者选举
 
-   ```shell
-   export PATH=/opt/mongodb4/bin:$PATH
-   ```
+**三种角色**
 
-5. 新建目录，存储数据和日志
+* 主要成员；接受所有得写操作
+* 副本成员：从主节点通过复制操作以维护相同的数据集，即备份数据，不可写数据
+* 仲裁者：不保留任何数据的副本，只具有选举作用
+* 如果你的副本+主节点的个数是偶数，建议加一个仲裁者，形成奇数，容易满足大多数的投票
 
-   ```shell
-   sudo mkdir -p /usr/mongodb/data
-   sudo mkdir -p /usr/mongodb/log
-   ```
+### 2.副本集创建
 
-6. 修改配置文件‘
+![副本集](C:\Users\Admin\AppData\Roaming\Typora\typora-user-images\image-20210412201107674.png)
+
+1. 主节点
 
    ```shell
-   vi mongodb.conf
-   
-   dbpath=/usr/mongodb/data #数据文件存放目录
-   logpath=/usr/mongodb/log/mongod.log #日志文件存放地址
-   port=27017 #端口
-   fork= true #以守护程序的方式启用，即在后台运行
-   #auth=true #需要认证。如果放开注释，就必须创建MongoDB的账号，使用账号与密码才可远程访问，第一次安装建议注释
-   bind_ip=0.0.0.0 #允许远程访问，或者直接注释，127.0.0.1是只允许本地访问
+   # 1.创建目录
+   mkdir -p /mongodb/replica_sets/myrs_27017/log \ & mkdir -p /mongodb/replica_sets/myrs_27017/data/db
+   # 2.新建或修改配置文件
+   vi /mongodb/replica_sets/myrs_27017/mongod.conf
+
+   systemLog:
+       #MongoDB发送所有日志输出的目标指定为文件
+       destination: file
+       #mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径
+       path: "/mongodb/replica_sets/myrs_27017/log/mongod.log"
+       #当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。
+       logAppend: true
+   storage:
+       #mongod实例存储其数据的目录。storage.dbPath设置仅适用于mongod。
+       dbPath: "/mongodb/replica_sets/myrs_27017/data/db"
+       journal:
+           #启用或禁用持久性日志以确保数据文件保持有效和可恢复。
+           enabled: true
+   processManagement:
+       #启用在后台运行mongos或mongod进程的守护进程模式。
+       fork: true #指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID
+       pidFilePath: "/mongodb/replica_sets/myrs_27017/log/mongod.pid"
+   net:
+       #服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip #bindIpAll: true #服务实例绑定的IP
+       bindIp: localhost,192.168.106.128
+       #bindIp
+       #绑定的端口
+       port: 27017
+   replication:
+       #副本集的名称
+       replSetName: myrs
+
+   # 3.启动主节点
+   mongod -f /mongodb/replica_sets/myrs_27017/mongod.conf
    ```
 
-7. 启动MongoDB
+2. 副本节点
 
    ```shell
-   mongod  -f  /opt/mongodb4/mongodb.conf  #启动mongodb
+   # 1. 创建目录
+   mkdir -p /mongodb/replica_sets/myrs_27018/log \ & mkdir -p /mongodb/replica_sets/myrs_27018/data/db
+   # 2. 修改配置文件
+   vim /mongodb/replica_sets/myrs_27018/mongod.conf
+
+   systemLog:
+       #MongoDB发送所有日志输出的目标指定为文件
+       destination: file
+       #mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径
+       path: "/mongodb/replica_sets/myrs_27018/log/mongod.log"
+       #当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。
+       logAppend: true
+   storage:
+       #mongod实例存储其数据的目录。storage.dbPath设置仅适用于mongod。
+       dbPath: "/mongodb/replica_sets/myrs_27018/data/db"
+       journal:
+       #启用或禁用持久性日志以确保数据文件保持有效和可恢复。 、
+           enabled: true
+   processManagement:
+       #启用在后台运行mongos或mongod进程的守护进程模式。
+       fork: true
+       #指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID
+       pidFilePath: "/mongodb/replica_sets/myrs_27018/log/mongod.pid"
+   net:
+       #服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip
+       #bindIpAll: true
+       #服务实例绑定的IP
+       bindIp: localhost,192.168.106.128
+       #bindIp
+       #绑定的端口
+       port: 27018
+   replication:
+       #副本集的名称
+       replSetName: myrs
+
+   # 3.启动副本节点
+   mongod -f  /mongodb/replica_sets/myrs_27018/mongod.conf
    ```
 
-8. 若数据损坏，需要进行如下操作
+3. 仲裁节点
 
    ```shell
-   rm -f /mongodb/single/data/db/*.lock # 删除lock文件
-   /usr/local/mongdb/bin/mongod --repair --dbpath=/mongodb/single/data/db #修复数据
+   # 1. 创建目录
+   mkdir -p /mongodb/replica_sets/myrs_27019/log \ & mkdir -p /mongodb/replica_sets/myrs_27019/data/db
+   # 2. 修改配置文件
+   vim /mongodb/replica_sets/myrs_27019/mongod.conf
+
+   systemLog:
+       #MongoDB发送所有日志输出的目标指定为文件
+       destination: file
+       #mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径
+       path: "/mongodb/replica_sets/myrs_27019/log/mongod.log"
+       #当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。
+       logAppend: true
+   storage:
+       #mongod实例存储其数据的目录。storage.dbPath设置仅适用于mongod。
+       dbPath: "/mongodb/replica_sets/myrs_27019/data/db"
+       journal:
+       #启用或禁用持久性日志以确保数据文件保持有效和可恢复。
+           enabled: true
+   processManagement:
+       #启用在后台运行mongos或mongod进程的守护进程模式。
+       fork: true
+       #指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID
+       pidFilePath: "/mongodb/replica_sets/myrs_27019/log/mongod.pid"
+   net:
+       #服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip
+       #bindIpAll: true
+       #服务实例绑定的IP
+       bindIp: localhost,192.168.106.128
+       #bindIp
+       #绑定的端口
+       port: 27019
+   replication:
+       #副本集的名称
+       replSetName: myrs
+
+   # 3.启动仲裁节点
+   mongod -f  /mongodb/replica_sets/myrs_27019/mongod.conf
    ```
 
-#### 2. 基本命令
+   4. 初始化配置副本集和主节点
 
-1. 登录到mongo
+      ```shell
+      # 1. 连接到客户端
+      mongo --host=192.168.106.128 --port=27017
+      # 2. 使用默认的配置来初始化副本集命令行提示符发生变化，变成了一个从节点角色，此时默认不能读写。稍等片刻，回车，变成主节点。
+      rs.initiate(configuration)
+      # 3. 查看rs配置
+      rs.config()
+      # 4. 其他命令
+      use local
+      show collections
+      db.system.replset.find()
+      # 5. 检查副本集状态
+      rs.status()
+      # 6. 添加副本节点
+      rs.add("192.168.106.128:27018", arbiterOnly)
+      # 7. 添加仲裁从节点
+      rs.addArb("192.168.106.128:27019")
+      ```
 
-   ```shell
-   //客户端登录服务，注意，这里通过localhost登录，如果需要远程登录，必须先登录认证才行。 
-   mongo --port 27017 
-   //#切换到admin库 
-   use admin 
-   ```
+   5. 副本集的读写问题
 
-2. 数据库操作
+      * 从节点只是一个备份，不是奴隶节点
+      * 从节点没有读取权限，可以增加读的权限，需要设置
+      * 设置为奴隶节点，允许在从成员上运行读操作```shell rs.slaveOk() | rs.slaveOk(true) | 最新 rs.secondaryOk()```
 
-   ```shell
-   use blog #创建数据库
-   show dbs | show databases # 查看所有的数据库
-   db	#查看当前正在使用的mongo
-   db.dropDatabase() # 删除数据库
-   ```
+   6. 主节点的选举
 
-3. 集合操作
+      1. 触发条件
+         * 主节点故障
+         * 主节点网络不可达
+         * 人工干预
+      2. 选举规则
+         * 票数高者成为主节点
+         * 优先级参数影响很大```shell rs.conf().members[1].priority=2 ```
+      3.
 
-   ```shell
-   db.createCollection("user") #创建用户集合
-   show collections | show tables #查看所有的集合
-   db.user.drop #删除集合
-   ```
-
-4. 文档基本操作
-
-   ```shell
-   # 1. 插入操作
-   db.user.insert(
-   	{"age":20,"name":"张三","email":"123456789@qq.com"}, #插入的文档
-   	{
-   		# 可选"writeConcern":
-   		ordered:true #可选。如果为真，则按顺序插入数组中的文档，如果其中一个文档出现错误，MongoDB将返回而不处理数组中的其余文档。如果为假，则执行无序插入，如果其中一个文档出现错误，则继续处理数组中的主文档。在版本2.6+中默认为true
-   	}
-   )
-   
-   db.user.insert(
-   	{"age":20,"name":"张三","email":"123456789@qq.com"},
-   	{
-   		ordered:true 
-   	}
-   )
-   # 2.查询操作
-   db.collection.find(
-   	<query>, #可选。使用查询运算符指定选择筛选器
-   	[projection]) #可选。指定要在与查询筛选器匹配的文档中返回的字段（投影）。
-   
-   db.user.find({"age"：20})
-   db.user.find({"age":20},{age:1,_id:0})
-   
-   # 3.更新操作
-   db.collection.update(
-   query, # 更新的选择条件
-   update, #要应用的修改
-   options)
-   options{
-   	upsert # 可选。如果设置为true，则在没有与查询条件匹配的文档时创建新文档。默认值为false，如果找不到匹配项，则不会插入新文档
-   	multi # 可选。如果设置为true，则更新符合查询条件的多个文档。如果设置为false，则更新一个文档。默认值为false。
-   }
-   
-   db.user.update({age:20},{age:21}) # 除了age，其他字段都会被更新掉
-   db.user.insert({"age":29,"name":"李四","email":"987654321@qq.com"})
-   db.user.update({"age":29},{$set:{"age":30}}) # 局部更新
-   
-   # 4.删除文档
-   db.collection.remove(条件)
-   db.user.remove({"age":21})
-   ```
-
-5. 分页查询
-
-   ```shell
-   db.user.count() #统计集合的记录数
-   
-   db.collection.find().limit(number1).skip(number2) #分页查询
-   db.user.find().limit(2)
-   ```
-
-6. 高级查询
-
-   ```shell
-   db.collection.find({field:/正则表达式/}) # 正则表达式查询
-   db.user.find({"name":/李/})
-   
-   db.user.find({age:{$gt:28}}) #比较查询 < $lt,<= $lte,> $gt,>= $gte ，!= $ne
-   
-   db.user.find({age:{$in:[28,29]}}) # 包含查询
-   
-   db.user.insert({"age":28,"name":"张三","email":"987654321@qq.com"})
-   db.user.find({$and:[{age:28},{name:"张三"}]} # 条件连接查询 $and $or
-   
-   ```
-
-#### 3. 索引
-
-1. 索引类型
-
-    * 单字段索引
-    * 复合索引
-    * 其他索引：地理空间索引（Geospatial Index）、文本索引（Text Indexes）、哈希索引（Hashed Indexes）
-
-2. 基本命令操作
-
-   ```shell
-   db.user.getIndexes() # 返回集合中存在的索引
-   
-   db.collection.createIndex(
-   keys, #包含字段和值对的文档，其中字段是索引键，值描述该字段的索引类型。对于字段上的升序索引，请指定值1；对于降序索引，请指定值-1
-   options) # 包含一组控制索引创建的选项的文档
-   db.user.createIndex({age:1})
-   
-   db.user.dropIndex({age:1})#删除索引
-   
-   db.collection.dropIndexes() #删除所有索引
-   ```
-
-3. 索引的使用
-
-   ```shell
-   db.collection.find().explain() #分析查询性能
-   
-   #当查询条件和查询的投影仅包含索引字段时，MongoDB直接从索引返回结果，而不扫描任何文档或将文档带入内存
-   ```
-
-
-
-4. 
