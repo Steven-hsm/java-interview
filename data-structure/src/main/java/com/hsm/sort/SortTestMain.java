@@ -13,19 +13,34 @@ public class SortTestMain {
     public static void main(String[] args) {
         int[] arr = null;
         //冒泡排序
-        arr = new int[]{10,9,1,8,5,2,3,4,6,7};
+        arr = new int[]{10, 9, 1, 8, 5, 2, 3, 4, 6, 7};
         Sort.bubbleSort(arr);
 
         //选择排序
-        arr = new int[]{10,9,1,8,5,2,3,4,6,7};
+        arr = new int[]{10, 9, 1, 8, 5, 2, 3, 4, 6, 7};
         Sort.selectionSort(arr);
 
         //插入排序
-        arr = new int[]{10,9,1,8,5,2,3,4,6,7};
+        arr = new int[]{10, 9, 1, 8, 5, 2, 3, 4, 6, 7};
         Sort.insertionSort(arr);
 
-        for (int i : arr) {
-            System.out.print(i);
+        //希尔排序
+        arr = new int[]{10, 9, 1, 8, 5, 2, 3, 4, 6, 7};
+        Sort.shellSort(arr);
+
+        //归并
+        arr = new int[]{10, 9, 1, 8, 5, 2, 3, 4, 6, 7};
+        Sort.mergeSort(arr);
+
+        //快速排序
+        arr = new int[]{10, 9, 1, 8, 5, 2, 3, 4, 6, 7};
+        Sort.quickSort(arr);
+
+        //堆排序
+        arr = new int[]{10, 9, 1, 8, 5, 2, 3, 4, 6, 7};
+        Sort.heapSort(arr);
+        for (int j : arr) {
+            System.out.print(j + "\t");
         }
 
 

@@ -12,6 +12,7 @@ import java.util.Arrays;
 public class Sort {
     /**
      * 冒泡排序
+     *
      * @param array
      * @return
      */
@@ -30,6 +31,7 @@ public class Sort {
 
     /**
      * 选择排序
+     *
      * @param array
      * @return
      */
@@ -51,6 +53,7 @@ public class Sort {
 
     /**
      * 插入排序
+     *
      * @param array
      * @return
      */
@@ -58,9 +61,12 @@ public class Sort {
         if (array.length == 0)
             return array;
         int current;
+        //遍历每一个元素
         for (int i = 0; i < array.length - 1; i++) {
+            //遍历到的元素是移动的元素
             current = array[i + 1];
             int preIndex = i;
+            //当前元素和左边的元素，如果小于比较元素后，将比较元素右边的元素整体右移。当前元素插入到比较元素中
             while (preIndex >= 0 && current < array[preIndex]) {
                 array[preIndex + 1] = array[preIndex];
                 preIndex--;
@@ -71,22 +77,31 @@ public class Sort {
     }
 
     /**
-     * 希尔排序
+     * 希尔排序 优先比较距离较远的元素
+     * 希尔排序是对插入排序的优化
+     *
      * @param array
      * @return
      */
     public static int[] shellSort(int[] array) {
         int len = array.length;
-        int temp, gap = len / 2;
+        //间隔分组
+        int gap = len / 2;
         while (gap > 0) {
+            //
             for (int i = gap; i < len; i++) {
-                temp = array[i];
+                //当前元素
+                int temp = array[i];
+                //上一个元素位置
                 int preIndex = i - gap;
+                //和插入排顺类似，换位置
                 while (preIndex >= 0 && array[preIndex] > temp) {
                     array[preIndex + gap] = array[preIndex];
                     preIndex -= gap;
                 }
                 array[preIndex + gap] = temp;
+
+                System.out.println();
             }
             gap /= 2;
         }
@@ -95,17 +110,24 @@ public class Sort {
 
     /**
      * 归并排序
+     * 归并排序主要思想是 先拆分，然后合并
      *
      * @param array
      * @return
      */
-    public static int[] MergeSort(int[] array) {
+    public static int[] mergeSort(int[] array) {
+        //如果长度小于2，表示只有一个元素了，就不需要再拆分了
         if (array.length < 2) return array;
+        //取中间元素位置，用于拆分
         int mid = array.length / 2;
+        //左边数组
         int[] left = Arrays.copyOfRange(array, 0, mid);
+        //右边数组
         int[] right = Arrays.copyOfRange(array, mid, array.length);
-        return merge(MergeSort(left), MergeSort(right));
+        //合并两个分的数组
+        return merge(mergeSort(left), mergeSort(right));
     }
+
     /**
      * 归并排序——将两段排序好的数组结合成一个排序数组
      *
@@ -114,6 +136,7 @@ public class Sort {
      * @return
      */
     public static int[] merge(int[] left, int[] right) {
+        //归并，数组长度为两个数组长度之和
         int[] result = new int[left.length + right.length];
         for (int index = 0, i = 0, j = 0; index < result.length; index++) {
             if (i >= left.length)
@@ -130,22 +153,28 @@ public class Sort {
 
     /**
      * 快速排序方法
+     *
      * @param array
-     * @param start
-     * @param end
      * @return
      */
-    public static int[] QuickSort(int[] array, int start, int end) {
+
+    public static int[] quickSort(int[] array) {
+        return quickSort(array, 0, array.length - 1);
+    }
+
+    public static int[] quickSort(int[] array, int start, int end) {
         if (array.length < 1 || start < 0 || end >= array.length || start > end) return null;
         int smallIndex = partition(array, start, end);
         if (smallIndex > start)
-            QuickSort(array, start, smallIndex - 1);
+            quickSort(array, start, smallIndex - 1);
         if (smallIndex < end)
-            QuickSort(array, smallIndex + 1, end);
+            quickSort(array, smallIndex + 1, end);
         return array;
     }
+
     /**
      * 快速排序算法——partition
+     *
      * @param array
      * @param start
      * @param end
@@ -166,6 +195,7 @@ public class Sort {
 
     /**
      * 交换数组内两个元素
+     *
      * @param array
      * @param i
      * @param j
@@ -178,13 +208,14 @@ public class Sort {
 
     //声明全局变量，用于记录数组array的长度；
     static int len;
+
     /**
      * 堆排序算法
      *
      * @param array
      * @return
      */
-    public static int[] HeapSort(int[] array) {
+    public static int[] heapSort(int[] array) {
         len = array.length;
         if (len < 1) return array;
         //1.构建一个最大堆
@@ -197,6 +228,7 @@ public class Sort {
         }
         return array;
     }
+
     /**
      * 建立最大堆
      *
@@ -205,10 +237,11 @@ public class Sort {
     public static void buildMaxHeap(int[] array) {
         //从最后一个非叶子节点开始向上构造最大堆
         //for循环这样写会更好一点：i的左子树和右子树分别2i+1和2(i+1)
-        for (int i = (len/2- 1); i >= 0; i--) {
+        for (int i = (len / 2 - 1); i >= 0; i--) {
             adjustHeap(array, i);
         }
     }
+
     /**
      * 调整使之成为最大堆
      *
@@ -236,7 +269,7 @@ public class Sort {
      * @param array
      * @return
      */
-    public static int[] CountingSort(int[] array) {
+    public static int[] countingSort(int[] array) {
         if (array.length == 0) return array;
         int bias, min = array[0], max = array[0];
         for (int i = 1; i < array.length; i++) {
@@ -270,7 +303,7 @@ public class Sort {
      * @param bucketSize
      * @return
      */
-    public static ArrayList<Integer> BucketSort(ArrayList<Integer> array, int bucketSize) {
+    public static ArrayList<Integer> bucketSort(ArrayList<Integer> array, int bucketSize) {
         if (array == null || array.size() < 2)
             return array;
         int max = array.get(0), min = array.get(0);
@@ -297,7 +330,7 @@ public class Sort {
             } else {
                 if (bucketCount == 1)
                     bucketSize--;
-                ArrayList<Integer> temp = BucketSort(bucketArr.get(i), bucketSize);
+                ArrayList<Integer> temp = bucketSort(bucketArr.get(i), bucketSize);
                 for (int j = 0; j < temp.size(); j++)
                     resultArr.add(temp.get(j));
             }
@@ -307,10 +340,11 @@ public class Sort {
 
     /**
      * 基数排序
+     *
      * @param array
      * @return
      */
-    public static int[] RadixSort(int[] array) {
+    public static int[] radixSort(int[] array) {
         if (array == null || array.length < 2)
             return array;
         // 1.先算出最大数的位数；
