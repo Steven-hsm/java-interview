@@ -39,6 +39,14 @@ public class SortTestMain {
         //堆排序
         arr = new int[]{10, 9, 1, 8, 5, 2, 3, 4, 6, 7};
         Sort.heapSort(arr);
+
+        //基数排序
+        arr = new int[]{10, 9, 1, 8, 5, 2, 3, 4, 6, 7};
+        Sort.radixSort(arr);
+
+
+
+
         for (int j : arr) {
             System.out.print(j + "\t");
         }
