@@ -19,6 +19,7 @@
          <module>docker</module>
          <module>java-leetcode</module>
          <module>other</module>
+         <module>rocketMq</module>
      </modules>
 
     <dependencies>

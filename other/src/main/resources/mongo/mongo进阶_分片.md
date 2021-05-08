@@ -23,7 +23,7 @@
 # 1. 新建目录
 mkdir -p /mongodb/sharded_cluster/myshardrs01_27018/log \ & mkdir -p /mongodb/sharded_cluster/myshardrs01_27018/data/db 
 mkdir -p /mongodb/sharded_cluster/myshardrs01_27118/log \ & mkdir -p /mongodb/sharded_cluster/myshardrs01_27118/data/db 
-mkdir -p /mongodb/sharded_cluster/myshardrs01_27218/log \ & mkdir -p /mongodb/sharded_cluster/myshardrs01_27218/data/db
+mkdir -p /mongodb/sharded_cluster/myshardrs01_27218/log \ & mkdir -p /mongodb/sharded_
 
 # 2.修改配置文件
 vi /mongodb/sharded_cluster/myshardrs01_27018/mongod.conf

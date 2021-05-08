@@ -9,11 +9,14 @@
   掉后，又在剩下的从节点中选中其他节点为“主节点”，副本集总有一个活跃点(主、primary)和一个或多
 
   个备份节点(从、secondary)。
+  
+* 一个副本集最多可以有[50个成员](https://docs.mongodb.com/manual/release-notes/3.0/#replica-sets-max-members)，但仅能有7个可投票成员。
 
 **两种类型**
 
 * 主节点：数据操作的主要连接点，可读写
 * 从节点：数据冗余备份节点，可以读或者选举
+* 仲裁节点：只用于选举
 
 **三种角色**
 
@@ -114,7 +117,7 @@
    mkdir -p /mongodb/replica_sets/myrs_27019/log \ & mkdir -p /mongodb/replica_sets/myrs_27019/data/db
    # 2. 修改配置文件
    vim /mongodb/replica_sets/myrs_27019/mongod.conf
-
+   
    systemLog:
        #MongoDB发送所有日志输出的目标指定为文件
        destination: file
@@ -144,7 +147,7 @@
    replication:
        #副本集的名称
        replSetName: myrs
-
+   
    # 3.启动仲裁节点
    mongod -f  /mongodb/replica_sets/myrs_27019/mongod.conf
    ```
@@ -185,5 +188,68 @@
       2. 选举规则
          * 票数高者成为主节点
          * 优先级参数影响很大```shell rs.conf().members[1].priority=2 ```
-      3.
+      
+   7. 删除所有的节点(恢复初始配置)
+   
+      ```shell
+      rm -f -r /mongodb/replica_sets/myrs_27017/data/db/*
+      rm -f -r /mongodb/replica_sets/myrs_27018/data/db/*
+      rm -f -r /mongodb/replica_sets/myrs_27019/data/db/*
+      ```
+   
+      ### 数据迁移测试
+   
+      ##### 1. 将原来的节点变成主节点，单机变成副本集
+   
+      ```shell
+      1. 原配置信息
+      dbpath=/usr/mongodb/data #数据文件存放目录
+      logpath=/usr/mongodb/log/mongod.log #日志文件存放地址
+      port=27017 #端口
+      fork= true #以守护程序的方式启用，即在后台运行
+      #auth=true #需要认证。如果放开注释，就必须创建MongoDB的账号，使用账号与密码才可远程访问，第一次安装建议注释
+      bind_ip=0.0.0.0 #允许远程访问，或者直接注释，127.0.0.1是只允许本地访问
+      
+      2. 修改配置信息
+      systemLog:
+          #MongoDB发送所有日志输出的目标指定为文件
+          destination: file
+          #mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径
+          path: "/usr/mongodb/log/mongod.log"
+          #当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。
+          logAppend: true
+      storage:
+          #mongod实例存储其数据的目录。storage.dbPath设置仅适用于mongod。
+          dbPath: "/usr/mongodb/data"
+          journal:
+          #启用或禁用持久性日志以确保数据文件保持有效和可恢复。
+              enabled: true
+      processManagement:
+          #启用在后台运行mongos或mongod进程的守护进程模式。
+          fork: true
+          #指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID
+          pidFilePath: "/usr/mongodb/log/mongod.pid"
+      net:
+          #服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip
+          #bindIpAll: true
+          #服务实例绑定的IP
+          bindIp: localhost,192.168.106.128
+          #bindIp
+          #绑定的端口
+          port: 27020
+      replication:
+          #副本集的名称
+          replSetName: myrs
+      3. 启动存在数据的mongo
+      	mongod -f /opt/mongodb4/mongodb.conf
+      4. 这个时候访问是访问不了的，需要初始化副本集，初始化之后就可以访问了
+      	rs.initiate()
+      5. 其他节点依次启动，并按照副本集的配置配好
+      6. 副本集增加可读权限，其他副本集执行rs.secondaryOk() 变成从节点之后可读
+      ```
+   
+      
+   
+      
+   
 
