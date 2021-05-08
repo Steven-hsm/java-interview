@@ -1,0 +1,1 @@
+MongoDB中的副本集是一组维护相同数据集合的 [`mongod`](https://docs.mongodb.com/manual/reference/program/mongod/#bin.mongod)进程。副本集提供了冗余和高可用性
