@@ -17,6 +17,7 @@
         <module>spring-aop</module>
         <module>spring-elasticsearch</module>
         <module>spring-mybatis-plus</module>
+        <module>spring-file</module>
     </modules>
     <dependencies>
         <!-- 测试类 -->
