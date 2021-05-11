@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @Classname HomeController
  * @Description TODO
@@ -23,5 +25,10 @@ public class HomeController {
     @RequestMapping(value = {"/home","/"})
     public ModelAndView home(@RequestParam("path") String path) {
         return fileServer.getFileDir(path);
+    }
+
+    @RequestMapping(value = {"/download"})
+    public void download(@RequestParam("path") String path, HttpServletResponse response) {
+        fileServer.download(path,response);
     }
 }

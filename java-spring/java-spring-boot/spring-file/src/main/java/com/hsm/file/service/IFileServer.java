@@ -2,6 +2,8 @@ package com.hsm.file.service;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @Classname IFileServer
  * @Description 文件服务接口
@@ -15,4 +17,12 @@ public interface IFileServer {
      * @return
      */
     ModelAndView getFileDir(String path);
+
+    /**
+     * 下载文件
+     * @param path
+     * @param response
+     * @return
+     */
+    void download(String path, HttpServletResponse response);
 }

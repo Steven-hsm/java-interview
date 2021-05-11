@@ -7,7 +7,7 @@
 <#if dirList??>
     <ul>
         <#list dirList as dir>
-            ${dir.absolutePath}
+            <li>${dir.absolutePath}
         </#list>
     </ul>
 </#if>

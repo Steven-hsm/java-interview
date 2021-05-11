@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,4 +54,39 @@ public class FileServer implements IFileServer {
 
         return modelAndView;
     }
+
+    @Override
+    public void download(String path, HttpServletResponse response) {
+        OutputStream outputStreamDownload  = null;
+        InputStream in = null;
+        try {
+            response.setContentType("application/octet-stream");
+
+            File file = new File(path);
+            response.setHeader("Content-Disposition", "attachment; filename=\"" + new String(file.getName().getBytes("utf-8"), "ISO8859-1" )+ "\"");
+            outputStreamDownload = response.getOutputStream();
+            in = new FileInputStream(file);
+            //写文件
+            int b;
+            while ((b = in.read()) != -1) {
+                outputStreamDownload.write(b);
+            }
+        } catch (UnsupportedEncodingException e) {
+            log.error("下载文件错误:{}", e);
+        } catch (IOException e) {
+            log.error("下载文件错误:{}", e);
+        } finally {
+            try {
+                if (outputStreamDownload != null) {
+                    outputStreamDownload.close();
+                }
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException e) {
+                log.error("下载文件错误:{}", e);
+            }
+        }
+    }
+
 }
