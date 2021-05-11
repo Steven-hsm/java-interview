@@ -2,6 +2,9 @@ package com.hsm.file.entity;
 
 import lombok.Data;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * @Classname MyFile
  * @Description 文件属性
@@ -17,8 +20,14 @@ public class MyFile {
 
     private String replacePath;
 
-    public String getReplacePath(){
-        return absolutePath
+    public String getReplacePath()  {
+        try{
+            return URLEncoder.encode(this.absolutePath,"UTF-8");
+        }catch (UnsupportedEncodingException e){
+            return "";
+        }
+
+        /*return absolutePath
                 .replace(" ","%20")
                 .replace("\"","%22")
                 .replace("#","%23")
@@ -38,7 +47,7 @@ public class MyFile {
                 .replace("@","%40")
                 .replace("\\","%5C")
                 .replace("|","%7C")
-                ;
+                ;*/
     }
 
     /**
