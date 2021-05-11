@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.ArrayList;
@@ -63,6 +64,9 @@ public class FileServer implements IFileServer {
             response.setContentType("application/octet-stream");
 
             File file = new File(path);
+
+            String type = new MimetypesFileTypeMap().getContentType(file);
+            response.setHeader("Content-type",type);
             response.setHeader("Content-Disposition", "attachment; filename=\"" + new String(file.getName().getBytes("utf-8"), "ISO8859-1" )+ "\"");
             outputStreamDownload = response.getOutputStream();
             in = new FileInputStream(file);
