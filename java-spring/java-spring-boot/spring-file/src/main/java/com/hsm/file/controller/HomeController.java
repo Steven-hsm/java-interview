@@ -23,7 +23,7 @@ public class HomeController {
     private IFileServer fileServer;
 
     @RequestMapping(value = {"/home","/"})
-    public ModelAndView home(@RequestParam("path") String path) {
+    public ModelAndView home(String path) {
         return fileServer.getFileDir(path);
     }
 

@@ -15,6 +15,32 @@ public class MyFile {
      */
     private String absolutePath;
 
+    private String replacePath;
+
+    public String getReplacePath(){
+        return absolutePath
+                .replace(" ","%20")
+                .replace("\"","%22")
+                .replace("#","%23")
+                .replace("%","%25")
+                .replace("&","%26")
+                .replace("(","%28")
+                .replace(")","%29")
+                .replace("+","%2B")
+                .replace(",","%2C")
+                .replace("/","%2F")
+                .replace(":","%3A")
+                .replace(";","%3B")
+                .replace("<","%3C")
+                .replace("=","%3D")
+                .replace(">","%3E")
+                .replace("?","%eF")
+                .replace("@","%40")
+                .replace("\\","%5C")
+                .replace("|","%7C")
+                ;
+    }
+
     /**
      * 文件明
      */

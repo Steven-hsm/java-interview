@@ -7,7 +7,7 @@
 <#if dirList??>
     <ul>
         <#list dirList as dir>
-            <li>${dir.absolutePath}
+            <li><a href="/?path=${dir.replacePath}"/>${dir.absolutePath}
         </#list>
     </ul>
 </#if>
@@ -15,7 +15,7 @@
 <#if fileList??>
     <ul>
         <#list fileList as file>
-            <li> ${file.absolutePath}
+            <li><a href="/download?path=${file.replacePath}"><font color="#00FF00">${file.absolutePath}</font>
         </#list>
     </ul>
 </#if>
