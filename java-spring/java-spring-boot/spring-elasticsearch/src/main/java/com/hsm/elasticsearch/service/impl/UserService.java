@@ -1,6 +1,6 @@
 package com.hsm.elasticsearch.service.impl;
 
-import com.hsm.elasticsearch.entity.UserPO;
+import com.hsm.elasticsearch.entity.UserESPO;
 import com.hsm.elasticsearch.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +10,14 @@ import org.zxp.esclientrhl.repository.ElasticsearchTemplate;
 
 @Service
 @Slf4j
-public class UserServiceImpl implements IUserService {
+public class UserService implements IUserService {
     @Autowired
-    ElasticsearchTemplate<UserPO,String> elasticsearchTemplate;
+    ElasticsearchTemplate<UserESPO,String> elasticsearchTemplate;
 
     @Autowired
-    ElasticsearchIndex<UserPO> userIndex;
+    ElasticsearchIndex<UserESPO> userIndex;
     @Override
-    public boolean add(UserPO user) {
+    public boolean add(UserESPO user) {
         boolean result = false;
         try {
             result = elasticsearchTemplate.save(user);
@@ -30,7 +30,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void dropIndex() {
         try {
-            userIndex.dropIndex(UserPO.class);
+            userIndex.dropIndex(UserESPO.class);
         } catch (Exception e) {
             log.error("删除索引异常");
         }
@@ -39,7 +39,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void createIndex() {
         try {
-            userIndex.createIndex(UserPO.class);
+            userIndex.createIndex(UserESPO.class);
         } catch (Exception e) {
             log.error("创建索引异常");
         }

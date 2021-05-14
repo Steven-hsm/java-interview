@@ -14,4 +14,12 @@ public class ChinaNamePO {
     private String firstName;
     @ESMapping
     private String lastName;
+
+    public ChinaNamePO() {
+    }
+
+    public ChinaNamePO(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

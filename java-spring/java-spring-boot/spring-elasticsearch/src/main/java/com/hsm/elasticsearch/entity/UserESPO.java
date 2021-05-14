@@ -9,7 +9,7 @@ import org.zxp.esclientrhl.repository.GeoEntity;
 
 @ESMetaData(indexName = "user", number_of_shards = 5, number_of_replicas = 0)
 @Data
-public class UserPO {
+public class UserESPO {
     @ESID
     private String userCode;
 
@@ -19,9 +19,18 @@ public class UserPO {
     @ESMapping(datatype = DataType.integer_type)
     private int age;
 
-    @ESMapping(datatype = DataType.geo_point_type)
-    GeoEntity geo;
+  /*  @ESMapping(datatype = DataType.geo_point_type)
+    GeoEntity geo;*/
 
     @ESMapping(datatype = DataType.nested_type,nested_class = ChinaNamePO.class)
     private ChinaNamePO chinaName;
+
+    public UserESPO(String userCode, String userName, int age) {
+        this.userCode = userCode;
+        this.userName = userName;
+        this.age = age;
+    }
+
+    public UserESPO() {
+    }
 }

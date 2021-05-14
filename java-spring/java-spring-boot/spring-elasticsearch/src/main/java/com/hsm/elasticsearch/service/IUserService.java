@@ -1,6 +1,6 @@
 package com.hsm.elasticsearch.service;
 
-import com.hsm.elasticsearch.entity.UserPO;
+import com.hsm.elasticsearch.entity.UserESPO;
 
 /**
  * @description: 用户接口
@@ -13,7 +13,7 @@ public interface IUserService {
      * @Author: huangsm
      * @Date: 2021/3/16
      **/
-    boolean add(UserPO user);
+    boolean add(UserESPO user);
 
     /**
      * 删除索引
