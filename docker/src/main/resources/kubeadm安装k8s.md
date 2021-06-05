@@ -238,6 +238,8 @@ token=$(kubeadm token generate)
 kubeadm token create $token --print-join-command --ttl=0
 
 kubeadm token list | awk -F" " '{print $1}' |tail -n 1 # 打印第一行
+
+kubectl describe secrets -n kube-system $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')
 ```
 
 
