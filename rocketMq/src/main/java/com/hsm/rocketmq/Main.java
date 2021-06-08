@@ -5,8 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import jdk.nashorn.internal.parser.JSONParser;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -19,10 +18,17 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         String jsonData = Main.readJsonFile("C:\\Users\\Admin\\Desktop\\data.json");
-        List<MyData> myData = JSON.parseArray(jsonData, MyData.class);
+        List<MyData> myDataList = JSON.parseArray(jsonData, MyData.class);
+        Set<String> gradeSet = new HashSet<>();
 
         List<GradeDataBO> dataList = new ArrayList<>();
+        MyData myData;
+        for (MyData myData : myDataList) {
+            if(!gradeSet.contains(myData.getGrade_code())){
+                MyData = myData();
+            }
 
+        }
 
 
 
