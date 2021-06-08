@@ -3,6 +3,7 @@ package com.hsm.rocketmq;
 import com.hsm.rocketmq.ClassDataBO;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,9 +14,9 @@ import java.util.List;
  */
 @Data
 public class GradeDataBO {
-    private int gradeCode;
+    private String gradeCode;
 
     private String gradeName;
 
-    private List<ClassDataBO> classList;
+    private List<ClassDataBO> classList = new ArrayList<>();
 }
