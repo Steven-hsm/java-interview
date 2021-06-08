@@ -1,4 +1,4 @@
-package com.hsm.rocketmq;
+package com.hsm.rocketmq.tree;
 
 import lombok.Data;
 

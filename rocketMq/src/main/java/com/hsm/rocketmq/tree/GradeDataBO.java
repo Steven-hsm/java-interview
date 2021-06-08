@@ -1,6 +1,5 @@
-package com.hsm.rocketmq;
+package com.hsm.rocketmq.tree;
 
-import com.hsm.rocketmq.ClassDataBO;
 import lombok.Data;
 
 import java.util.ArrayList;
