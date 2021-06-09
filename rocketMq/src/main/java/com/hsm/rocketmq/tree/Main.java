@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  */
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        String jsonData = Main.readJsonFile("D:\\code\\java-interview\\rocketMq\\src\\main\\java\\com\\hsm\\rocketmq\\data.json");
+        String jsonData = Main.readJsonFile("E:\\github\\java-interview\\rocketMq\\src\\main\\java\\com\\hsm\\rocketmq\\tree\\data.json");
         List<MyData> myDataList = JSON.parseArray(jsonData, MyData.class);
         //1. 开始准备数据
         Map<String, String> gradeNameMap = new HashMap<>();
