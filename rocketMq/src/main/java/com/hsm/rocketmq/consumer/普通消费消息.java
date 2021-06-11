@@ -19,7 +19,7 @@ public class 普通消费消息 {
     public static void main(String[] args) throws InterruptedException, MQClientException {
 
         // 实例化消费者
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("myProducer");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("myConsumer");
 
         // 设置NameServer的地址
         consumer.setNamesrvAddr("192.168.106.133:9876");
