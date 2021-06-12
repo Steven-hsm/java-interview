@@ -11,7 +11,7 @@ import org.zxp.esclientrhl.index.ElasticsearchIndex;
 
 /**
  * @Classname 索引管理功能
- * @Description TODO
+ * @Description 索引管理功能
  * @Date 2021/5/13 18:16
  * @Created by huangsm
  */
@@ -24,12 +24,7 @@ public class 索引管理功能 {
     private ElasticsearchIndex elasticsearchIndex;
 
     @Test
-    public void 删除索引() {
-        try {
-            elasticsearchIndex.dropIndex(UserESPO.class);
-        } catch (Exception e) {
-            log.error("删除索引异常", e);
-        }
-
+    public void 删除索引() throws Exception{
+        elasticsearchIndex.dropIndex(UserESPO.class);
     }
 }
