@@ -9,15 +9,20 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mysql</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>mysql-jdbc</module>
-    </modules>
+    <artifactId>java-utils</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-words</artifactId>
+            <version>21.3.0</version>
+            <systemPath>${basedir}/src/main/resources/lib/aspose-words-21.3.0-jdk17.jar</systemPath>
+            <scope>system</scope>
+        </dependency>
+    </dependencies>
 </project>

@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>java-spring-boot</module>
+        <module>spring-rocketmq</module>
     </modules>
 
     <properties>

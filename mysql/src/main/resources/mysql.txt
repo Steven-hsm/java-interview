@@ -1,9 +1,0 @@
-实战经验：
-    经常变化的字段多个表同时存在
-
-**mybatis配置**
-
-```
-mybatis:
-  mapper-locations: classpath:mapper/**/*.xml
-```
