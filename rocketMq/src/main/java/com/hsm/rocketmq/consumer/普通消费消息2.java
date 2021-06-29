@@ -17,7 +17,7 @@ import java.util.List;
  * @Date 2021/6/8 14:16
  * @Created by huangsm
  */
-public class 普通消费消息 {
+public class 普通消费消息2 {
     public static void main(String[] args) throws InterruptedException, MQClientException {
 
         // 实例化消费者

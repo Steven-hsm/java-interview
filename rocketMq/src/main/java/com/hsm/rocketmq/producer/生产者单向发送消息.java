@@ -13,14 +13,14 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 public class 生产者单向发送消息 {
     public static void main(String[] args) throws Exception{
         // 实例化消息生产者Producer
-        DefaultMQProducer producer = new DefaultMQProducer("myProducer");
+        DefaultMQProducer producer = new DefaultMQProducer("myConsumer");
         // 设置NameServer的地址
-        producer.setNamesrvAddr("192.168.106.133:9876");
+        producer.setNamesrvAddr("192.168.0.164:9876");
         // 启动Producer实例
         producer.start();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1; i++) {
             // 创建消息，并指定Topic，Tag和消息体
-            Message msg = new Message("MyTopic" /* Topic */,
+            Message msg = new Message("TopicTest" /* Topic */,
                     "TagA" /* Tag */,
                     ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET) /* Message body */
             );

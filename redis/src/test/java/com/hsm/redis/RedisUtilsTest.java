@@ -23,4 +23,21 @@ public class RedisUtilsTest {
         System.out.println(ping);
     }
 
+    @Test
+    public void lock() {
+        Jedis jedis = RedisUtils.getConnetion();
+        System.out.println(jedis.setnx("taskId", "taskId"));
+        System.out.println(jedis.setnx("taskId", "taskId"));
+
+    }
+
+
+    @Test
+    public void lock2() {
+        Jedis jedis = RedisUtils.getConnetion();
+        String ping = jedis.ping();
+        System.out.println(ping);
+    }
+
+
 }

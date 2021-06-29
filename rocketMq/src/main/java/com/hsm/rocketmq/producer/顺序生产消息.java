@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class 顺序生产消息 {
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = new DefaultMQProducer("myProducer");
+        DefaultMQProducer producer = new DefaultMQProducer("myConsumer");
 
         producer.setNamesrvAddr("192.168.106.133:9876");
 
