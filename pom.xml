@@ -20,9 +20,7 @@
          <module>java-leetcode</module>
          <module>other</module>
          <module>rocketMq</module>
-         <module>spring-file-download</module>
          <module>java-utils</module>
-         <module>jdbc</module>
      </modules>
 
     <dependencies>
