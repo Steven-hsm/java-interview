@@ -18,6 +18,7 @@
         <module>spring-elasticsearch</module>
         <module>spring-mybatis-plus</module>
         <module>spring-file</module>
+        <module>brain-boot</module>
     </modules>
     <dependencies>
         <!-- 测试类 -->
