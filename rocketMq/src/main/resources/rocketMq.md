@@ -35,7 +35,7 @@ mvn -Prelease-all -DskipTests clean install -U
 
 cd distribution/target/rocketmq-4.8.0/rocketmq-4.8.0
 nohup sh bin/mqnamesrv &
-nohup sh bin/mqbroker -n localhost:9876 -c conf/broker.conf autoCreateTopicEnable=true &
+nohup sh bin/mqbroker -n localhost:9876 -c conf/broker.conf autoCreateTopicEnable=true enablePropertyFilter=true &
 
 export NAMESRV_ADDR=localhost:9876
 sh bin/tools.sh org.apache.rocketmq.example.quickstart.Producer
@@ -45,5 +45,4 @@ sh bin/tools.sh org.apache.rocketmq.example.quickstart.Consumer
 ```shell
  java -jar rocketmq-console-ng-1.0.0.jar --server.port=8080 --rocketmq.config.namesrvAddr=192.168.0.164:9876 
 ```
-
 
