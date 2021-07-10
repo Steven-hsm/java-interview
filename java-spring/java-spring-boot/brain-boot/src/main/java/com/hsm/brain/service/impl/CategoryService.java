@@ -1,5 +1,6 @@
 package com.hsm.brain.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hsm.brain.mapper.CategoryMapper;
 import com.hsm.brain.model.po.CategoryPO;
 import com.hsm.brain.service.ICategoryService;
@@ -22,6 +23,7 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public void add(CategoryPO categoryPO) {
+
         categoryPO.setCtime(System.currentTimeMillis());
         categoryPO.setUserId(0);
         categoryMapper.insert(categoryPO);
