@@ -1,10 +1,13 @@
 package com.hsm.brain.service.impl;
 
+import com.hsm.brain.mapper.CategoryMapper;
 import com.hsm.brain.model.po.CategoryPO;
 import com.hsm.brain.service.ICategoryService;
-import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 
 /**
  * @Classname CategoryService
@@ -15,10 +18,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryService implements ICategoryService {
     @Autowired
-    JPAQueryFactory queryFactory;
+    private CategoryMapper categoryMapper;
 
     @Override
     public void add(CategoryPO categoryPO) {
-        //queryFactory.selectFrom()
+        categoryPO.setCtime(System.currentTimeMillis());
+        categoryPO.setUserId(0);
+        categoryMapper.insert(categoryPO);
+    }
+
+    @Override
+    public void update(CategoryPO categoryPO) {
+        CategoryPO oleCategory = this.selectById(categoryPO.getId());
+        if(oleCategory == null){
+            return ;
+        }
+        BeanUtils.copyProperties(oleCategory,categoryPO);
+        categoryMapper.updateById(categoryPO);
+    }
+
+    @Override
+    public CategoryPO selectById(long id) {
+        return categoryMapper.selectById(id);
     }
 }

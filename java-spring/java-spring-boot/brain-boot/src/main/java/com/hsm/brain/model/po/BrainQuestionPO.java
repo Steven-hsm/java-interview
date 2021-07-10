@@ -1,10 +1,7 @@
 package com.hsm.brain.model.po;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * @Classname BrainQuestionPO
@@ -12,14 +9,13 @@ import javax.persistence.Table;
  * @Date 2021/7/9 18:06
  * @Created by huangsm
  */
-@Entity
+
 @Data
-@Table(name = "brain_question")
+@TableName("brain_question")
 public class BrainQuestionPO {
     /**
      * 主键
      */
-    @Id
     private Integer id;
 
     /**

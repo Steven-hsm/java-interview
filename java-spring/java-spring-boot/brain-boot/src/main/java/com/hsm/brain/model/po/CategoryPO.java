@@ -1,10 +1,9 @@
 package com.hsm.brain.model.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * @Classname Category
@@ -12,12 +11,12 @@ import javax.persistence.Table;
  * @Date 2021/7/9 17:58
  * @Created by huangsm
  */
-@Entity
+
+@TableName("category")
 @Data
-@Table(name = "category")
 public class CategoryPO {
-    @Id
-    private Long id;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
     /**
      * 名称
      */
