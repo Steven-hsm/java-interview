@@ -15,8 +15,12 @@ import lombok.Data;
 @TableName("category")
 @Data
 public class CategoryPO {
-    @TableId(type = IdType.AUTO)
+    /**
+     * 主键
+     */
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
+
     /**
      * 名称
      */
@@ -31,4 +35,5 @@ public class CategoryPO {
      * 添加时间
      */
     private Long ctime;
+
 }
