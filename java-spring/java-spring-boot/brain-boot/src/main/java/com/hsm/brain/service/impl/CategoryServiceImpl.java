@@ -2,6 +2,7 @@ package com.hsm.brain.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hsm.brain.Exception.ServiceException;
 import com.hsm.brain.mapper.CategoryMapper;
 import com.hsm.brain.model.po.CategoryPO;
 import com.hsm.brain.model.vo.category.CategoryQueryVO;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Service;
  * @Created by huangsm
  */
 @Service
-public class CategoryService implements ICategoryService {
+public class CategoryServiceImpl implements ICategoryService {
     @Autowired
     private CategoryMapper categoryMapper;
 
@@ -35,7 +36,7 @@ public class CategoryService implements ICategoryService {
     public void update(CategoryPO categoryPO) {
         CategoryPO oleCategory = this.selectById(categoryPO.getId());
         if (oleCategory == null) {
-            return;
+            throw new ServiceException("无法获取原数据，更新异常");
         }
         BeanUtils.copyProperties(oleCategory, categoryPO);
         categoryMapper.updateById(categoryPO);

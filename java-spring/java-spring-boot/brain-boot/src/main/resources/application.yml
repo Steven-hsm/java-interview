@@ -8,3 +8,11 @@ spring:
     url: jdbc:mysql://45.77.178.27:3306/brain?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: 123456
+
+# mybatis个性化配置
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: org.kunpeng.promotion.dao
+  configuration:
+    # 驼峰命名
+    map-underscore-to-camel-case: true

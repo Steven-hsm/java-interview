@@ -6,10 +6,7 @@ import com.hsm.brain.model.po.CategoryPO;
 import com.hsm.brain.model.vo.category.CategoryQueryVO;
 import com.hsm.brain.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,17 @@ public class CategoryController {
     private Result add(@RequestBody CategoryPO categoryPO) {
         categoryService.add(categoryPO);
         return Result.success();
+    }
+
+    @PostMapping("/update")
+    private Result update(@RequestBody CategoryPO categoryPO) {
+        categoryService.update(categoryPO);
+        return Result.success();
+    }
+
+    @GetMapping("/detail/{categoryId:\\d+}")
+    private Result<CategoryPO> detail(@PathVariable Integer categoryId) {
+        return Result.success(categoryService.selectById(categoryId));
     }
 
     @PostMapping("/list")

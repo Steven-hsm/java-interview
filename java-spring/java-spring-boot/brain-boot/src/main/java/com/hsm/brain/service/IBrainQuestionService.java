@@ -1,7 +1,9 @@
 package com.hsm.brain.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hsm.brain.model.po.BrainQuestionPO;
+import com.hsm.brain.model.vo.question.QuestionQueryVO;
 
 /**
  * <p>
@@ -13,4 +15,29 @@ import com.hsm.brain.model.po.BrainQuestionPO;
  */
 public interface IBrainQuestionService extends IService<BrainQuestionPO> {
 
+    /**
+     * 添加试题
+     * @param brainQuestionPO
+     */
+    void add(BrainQuestionPO brainQuestionPO);
+
+    /**
+     * 更新试题
+     * @param brainQuestionPO
+     */
+    void update(BrainQuestionPO brainQuestionPO);
+
+    /**
+     * 获取试题详情数据
+     * @param questionId
+     * @return
+     */
+    BrainQuestionPO selectById(Integer questionId);
+
+    /**
+     * 分页查询试题数据
+     * @param questionQueryVO
+     * @return
+     */
+    IPage<BrainQuestionPO> list(QuestionQueryVO questionQueryVO);
 }
