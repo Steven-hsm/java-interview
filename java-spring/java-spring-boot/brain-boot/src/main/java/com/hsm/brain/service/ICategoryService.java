@@ -1,6 +1,8 @@
 package com.hsm.brain.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.hsm.brain.model.po.CategoryPO;
+import com.hsm.brain.model.vo.category.CategoryQueryVO;
 
 /**
  * @Classname ICategoryService
@@ -26,4 +28,11 @@ public interface ICategoryService {
      * @param id
      */
     CategoryPO selectById(long id);
+
+    /**
+     * 查询分类列表数据
+     * @param categoryQueryVO
+     * @return
+     */
+    IPage<CategoryPO> list(CategoryQueryVO categoryQueryVO);
 }
