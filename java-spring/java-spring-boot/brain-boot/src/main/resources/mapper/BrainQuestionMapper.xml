@@ -19,6 +19,6 @@
     <!-- 上一题 -->
     <select id="previous" resultType="com.hsm.brain.model.po.BrainQuestionPO">
         SELECT *
-        FROM brain_question WHERE id lt; #{questionId} order by id desc LIMIT 1
+        FROM brain_question WHERE id &lt; #{questionId} order by id desc LIMIT 1
     </select>
 </mapper>

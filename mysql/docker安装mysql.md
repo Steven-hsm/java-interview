@@ -56,7 +56,8 @@ symbolic-links=0
 
 !includedir /etc/mysql/conf.d/
 启动创建容器
-$ docker run --restart=unless-stopped -d --name mysql -v /usr/mysql/conf/my.cnf:/etc/mysql/my.cnf -v /usr/mysql/data:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
+$ docker run --restart=unless-stopped -d --name mysql -v /usr/mysql/conf/my.cnf:/etc/mysql/my.cnf -v /usr/mysql/data:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:8.0.16
+
 参数解释：
 -v : 挂载宿主机目录和 docker容器中的目录，前面是宿主机目录，后面是容器内部目录
 

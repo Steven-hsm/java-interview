@@ -52,7 +52,7 @@ public class BrainQuestionController {
     }
 
     @GetMapping("/previous/{questionId:\\d+}")
-    @ApiOperation(value = "下一题")
+    @ApiOperation(value = "上一题")
     private Result<BrainQuestionPO> previous(@PathVariable Integer questionId) {
         return Result.success(brainQuestionService.previous(questionId));
     }
