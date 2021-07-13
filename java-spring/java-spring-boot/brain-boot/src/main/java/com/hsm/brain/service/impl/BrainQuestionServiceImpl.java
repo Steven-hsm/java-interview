@@ -56,4 +56,14 @@ public class BrainQuestionServiceImpl extends ServiceImpl<BrainQuestionMapper, B
         questionQueryVO.setContent(SqlUtils.contactLike(questionQueryVO.getContent()));
         return brainQuestionMapper.listWithPage(page, questionQueryVO);
     }
+
+    @Override
+    public BrainQuestionPO next(Integer questionId) {
+        return brainQuestionMapper.next(questionId);
+    }
+
+    @Override
+    public BrainQuestionPO previous(Integer questionId) {
+        return brainQuestionMapper.previous(questionId);
+    }
 }

@@ -5,6 +5,8 @@ import com.hsm.brain.model.common.Result;
 import com.hsm.brain.model.po.CategoryPO;
 import com.hsm.brain.model.vo.category.CategoryQueryVO;
 import com.hsm.brain.service.ICategoryService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,7 @@ import java.util.List;
  * @Created by huangsm
  */
 @RestController
+@Api(tags = "分类模块")
 @RequestMapping("/category")
 public class CategoryController {
     @Autowired
@@ -40,6 +43,7 @@ public class CategoryController {
     }
 
     @PostMapping("/list")
+    @ApiOperation(value = "分类列表查询")
     private Result<IPage<CategoryPO>> list(@RequestBody CategoryQueryVO categoryQueryVO) {
         IPage<CategoryPO> pageList = categoryService.list(categoryQueryVO);
         return Result.success(pageList);

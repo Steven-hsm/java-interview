@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hsm.brain.mapper.BrainQuestionMapper">
-
+    <!-- 分页查询试题数据 -->
     <select id="listWithPage" resultType="com.hsm.brain.model.po.BrainQuestionPO">
         SELECT *
         FROM brain_question
         WHERE content like #{vo.content}
+        <if test="vo.categoryId != null and vo.categoryId != 0">
+            and category_id = #{vo.categoryId}
+        </if>
+    </select>
+    <!-- 下一题 -->
+    <select id="next" resultType="com.hsm.brain.model.po.BrainQuestionPO">
+        SELECT *
+        FROM brain_question WHERE id > #{questionId} order by id asc LIMIT 1
+    </select>
+
+    <!-- 上一题 -->
+    <select id="previous" resultType="com.hsm.brain.model.po.BrainQuestionPO">
+        SELECT *
+        FROM brain_question WHERE id lt; #{questionId} order by id desc LIMIT 1
     </select>
 </mapper>

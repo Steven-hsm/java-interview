@@ -3,6 +3,8 @@ package com.hsm.brain.model.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -14,35 +16,25 @@ import lombok.Data;
 
 @Data
 @TableName("brain_question")
+@ApiModel("试题")
 public class BrainQuestionPO {
-    /**
-     * 主键
-     */
+
     @TableId(type = IdType.AUTO)
+    @ApiModelProperty("试题id")
     private Integer id;
 
-    /**
-     * 分类id
-     */
+    @ApiModelProperty("分类id")
     private Integer categoryId;
 
-    /**
-     * 内容
-     */
+    @ApiModelProperty("内容")
     private String content;
 
-    /**
-     * 答案
-     */
+    @ApiModelProperty("答案")
     private String answer;
 
-    /**
-     * 添加人
-     */
+    @ApiModelProperty("添加人")
     private Integer userId;
 
-    /**
-     * 添加时间
-     */
+    @ApiModelProperty("添加时间")
     private Long ctime;
 }

@@ -24,4 +24,18 @@ public interface BrainQuestionMapper extends BaseMapper<BrainQuestionPO> {
      * @return
      */
     IPage<BrainQuestionPO> listWithPage(Page<CategoryPO> page, @Param("vo") QuestionQueryVO questionQueryVO);
+
+    /**
+     * 下一题
+     * @param questionId
+     * @return
+     */
+    BrainQuestionPO next(@Param("questionId") Integer questionId);
+
+    /**
+     * 上一题
+     * @param questionId
+     * @return
+     */
+    BrainQuestionPO previous(@Param("questionId") Integer questionId);
 }

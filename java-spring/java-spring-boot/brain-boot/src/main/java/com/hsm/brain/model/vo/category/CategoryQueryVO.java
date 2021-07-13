@@ -1,6 +1,8 @@
 package com.hsm.brain.model.vo.category;
 
 import com.hsm.brain.model.vo.PageVO;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -10,9 +12,8 @@ import lombok.Data;
  * @Created by huangsm
  */
 @Data
+@ApiModel
 public class CategoryQueryVO extends PageVO {
-    /**
-     * 分类名称
-     */
+    @ApiModelProperty("分类名称")
     private String name;
 }

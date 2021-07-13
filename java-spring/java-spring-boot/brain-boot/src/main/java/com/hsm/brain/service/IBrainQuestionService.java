@@ -40,4 +40,18 @@ public interface IBrainQuestionService extends IService<BrainQuestionPO> {
      * @return
      */
     IPage<BrainQuestionPO> list(QuestionQueryVO questionQueryVO);
+
+    /**
+     * 下一题
+     * @param questionId
+     * @return
+     */
+    BrainQuestionPO next(Integer questionId);
+
+    /**
+     * 上一题
+     * @param questionId
+     * @return
+     */
+    BrainQuestionPO previous(Integer questionId);
 }

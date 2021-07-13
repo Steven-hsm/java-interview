@@ -3,6 +3,8 @@ package com.hsm.brain.model.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -14,26 +16,19 @@ import lombok.Data;
 
 @TableName("category")
 @Data
+@ApiModel("分类")
 public class CategoryPO {
-    /**
-     * 主键
-     */
     @TableId(value = "id", type = IdType.AUTO)
+    @ApiModelProperty("分类id")
     private Integer id;
 
-    /**
-     * 名称
-     */
+    @ApiModelProperty("名称")
     private String name;
 
-    /**
-     * 添加用户id
-     */
+    @ApiModelProperty("添加用户id")
     private Integer userId;
 
-    /**
-     * 添加时间
-     */
+    @ApiModelProperty("添加时间")
     private Long ctime;
 
 }
