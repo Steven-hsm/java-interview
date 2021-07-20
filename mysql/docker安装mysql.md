@@ -85,7 +85,7 @@ $ mysql -uroot -p
 使用mysql库
 $ mysql> use mysql
 修改访问主机以及密码等，设置为所有主机可访问
-$ mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '新密码';
+$ mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
 注意：
 
 mysql_native_password，mysql8.x版本必须使用这种模式，否则navicate无法正确连接
