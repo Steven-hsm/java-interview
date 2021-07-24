@@ -9,9 +9,12 @@
 
 相比于ThreadPoolExecutor，ForkJoinPool可以更好地实现计算 的负载均衡，提高资源利用率。假设有5个任务，在ThreadPoolExecutor中有5个线程并行执行，其中一个任务的计算量很大，其余4个任务 的计算量很小，这会导致1个线程很忙，其他4个线程则处于空闲状 态。而利用ForkJoinPool，可以把大的任务拆分成很多小任务，然后这些小任务被所有的线程执行，从而实现任务计算的负载均衡。
 
- ###  7.1  ForkJoinPool用法 
+任务类主要继承RecursiveAction 和 RecursiveTask 两个 类，它们都继承自抽象类ForkJoinTask，用到了其中关键的接口 fork（）、join（）。二者的区别是一个有返回值，一个没有返回值。
 
-主要继承RecursiveAction 和 RecursiveTask 两个 类，它们都继承自抽象类ForkJoinTask，用到了其中关键的接口 fork（）、join（）。二者的区别是一个有返回值，一个没有返回值。
+1. 要计算一个超大数组的和，最简单的做法是用一个循环在一个线程内完成
+2. 可以把数组拆成两部分，分别计算，最后加起来就是最终结果，这样可以用两个线程并行执行
+3. 如果拆成两部分还是很大，我们还可以继续拆，用4个线程并行执行
+4. Fork/Join任务的原理：判断一个任务是否足够小，如果是，直接计算，否则，就分拆成几个小任务分别计算。这个过程可以反复“裂变”成一系列小任务。
 
 ```java
 public class SumTask extends RecursiveTask<Long> {
@@ -57,5 +60,5 @@ public class SumTask extends RecursiveTask<Long> {
 }
 ```
 
-### 7.2 核心数据结构
+### 
 
