@@ -27,6 +27,7 @@ public class MyServerSocket {
             Socket socket = serverSocket.accept();
             socketSet.add(socket);
 
+            //对每个socket的输入都开启一个线程进行监听
             new Thread(() ->{
                 try{
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -35,6 +36,7 @@ public class MyServerSocket {
                         try{
                             String message = bufferedReader.readLine();
                             System.out.println(Thread.currentThread().getName() + ":" + message);
+                            //遍历客户端，将其中一个客户端的消息发送给其他客户端
                             for (Socket socket1 : socketSet) {
                                 if(!socket1.equals(socket)){
                                     BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket1.getOutputStream()));

@@ -24,18 +24,17 @@ public class MyClientSocket {
                     String s = bufferedReader.readLine();
                     System.out.println( s);
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }).start();
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        //一直等待客户端的输入
         while(true){
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             BufferedReader systemIn = new BufferedReader(new InputStreamReader(System.in));
             String readLine = systemIn.readLine();
             bw.write( readLine+ "\n");
             bw.flush();
         }
-
     }
 }
