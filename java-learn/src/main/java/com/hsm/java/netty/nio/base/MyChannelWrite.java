@@ -20,7 +20,7 @@ public class MyChannelWrite {
         /*ByteBuffer buf = ByteBuffer.allocate(48);
         buf.put("this is a test".getBytes(StandardCharsets.UTF_8));*/
         ByteBuffer buf = ByteBuffer.wrap("this is a test".getBytes(StandardCharsets.UTF_8));
-        /*buf.flip();*/
+        buf.flip();
         outChannel.write(buf);
         buf.clear();
 
