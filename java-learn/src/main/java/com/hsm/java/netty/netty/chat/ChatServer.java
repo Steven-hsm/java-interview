@@ -76,12 +76,12 @@ public class ChatServer {
                 }
             });
             Channel channel = sync.channel();
-            new Thread(() ->{
+            /*new Thread(() ->{
                 while (true){
                     ThreadUtils.sleep(1000);
                     channelGroup.writeAndFlush("这个是循环发的消息");
                 }
-            }).start();
+            }).start();*/
             channel.closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();

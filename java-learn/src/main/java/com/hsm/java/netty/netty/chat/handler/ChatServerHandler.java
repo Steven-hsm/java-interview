@@ -25,6 +25,7 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
+
         // 将该客户上线的消息，推送给其他在线的客户端,channelGroup.writeAndFlush会将所有的channel遍历发送
         ChatServer.channelGroup.writeAndFlush("[客户端]"+channel.remoteAddress()+"加入聊天\n");
         ChatServer.channelGroup.add(channel);
