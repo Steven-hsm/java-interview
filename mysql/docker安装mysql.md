@@ -21,52 +21,33 @@ $ chmod -R 755 /usr/mysql/
 
 $ vim /usr/mysql/conf/my.cnf
 添加以下内容到上述创建的配置文件中
-
+```properties
 [client]
-
 #socket = /usr/mysql/mysqld.sock
-
 default-character-set = utf8mb4
-
 [mysqld]
-
 #pid-file        = /var/run/mysqld/mysqld.pid
-
 #socket          = /var/run/mysqld/mysqld.sock
-
 #datadir         = /var/lib/mysql
-
 #socket = /usr/mysql/mysqld.sock
-
 #pid-file = /usr/mysql/mysqld.pid
-
 datadir = /usr/mysql/data
-
 character_set_server = utf8mb4
-
 collation_server = utf8mb4_bin
-
 secure-file-priv= NULL
-
 # Disabling symbolic-links is recommended to prevent assorted security risks
-
 symbolic-links=0
-
 # Custom config should go here
-
 !includedir /etc/mysql/conf.d/
+```
 启动创建容器
-$ docker run --restart=unless-stopped -d --name mysql -v /usr/mysql/conf/my.cnf:/etc/mysql/my.cnf -v /usr/mysql/data:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:8.0.16
+$ docker run --restart=unless-stopped -d --name mysql -v /usr/mysql/conf/my.cnf:/etc/mysql/my.cnf -v /usr/mysql/data:/usr/mysql/data -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:8.0.16
 
 参数解释：
 -v : 挂载宿主机目录和 docker容器中的目录，前面是宿主机目录，后面是容器内部目录
-
 -d : 后台运行容器
-
 -p 映射容器端口号和宿主机端口号
-
 -e 环境参数，MYSQL_ROOT_PASSWORD设置root用户的密码
-
 执行上述命令后，执行查询容器的命令就可以看到创建的mysql容器
 
 $ docker ps -a
@@ -89,7 +70,7 @@ $ mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456'
 注意：
 
 mysql_native_password，mysql8.x版本必须使用这种模式，否则navicate无法正确连接
-
+``
 刷新
 $ mysql> flush privileges
 经过以上步骤，再次远程使用Navicat连接数据库时就可以正常连接了。
