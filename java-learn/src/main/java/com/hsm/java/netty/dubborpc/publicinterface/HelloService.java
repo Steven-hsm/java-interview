@@ -7,6 +7,7 @@ package com.hsm.java.netty.dubborpc.publicinterface;
  * @Created by huangsm
  */
 public interface HelloService {
+
     String hello(String mes);
 
     String test(String mes);

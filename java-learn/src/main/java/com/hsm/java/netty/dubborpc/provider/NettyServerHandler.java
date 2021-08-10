@@ -16,11 +16,12 @@ public class NettyServerHandler  extends ChannelInboundHandlerAdapter {
         //获取客户端发送的消息，并调用服务
         System.out.println("msg=" + msg);
         //客户端在调用服务器的api 时，我们需要定义一个协议
-        //比如我们要求 每次发消息是都必须以某个字符串开头 "HelloService#hello#你好"
+        //调用的是hello方法，就执行hello方法，返回给客户端
         if (msg.toString().startsWith(ClientBootstrap.SERVICE_NAME + "#" + ClientBootstrap.METHOD_NAME_HELLO)) {
             String result = new HelloServiceImpl().hello(msg.toString().substring(msg.toString().lastIndexOf("#") + 1));
             ctx.writeAndFlush(result);
         }
+        ////调用的是test方法，就执行hello方法，返回给客户端
         if (msg.toString().startsWith(ClientBootstrap.SERVICE_NAME + "#" + ClientBootstrap.METHOD_NAME_TEST)) {
             String result = new HelloServiceImpl().test(msg.toString().substring(msg.toString().lastIndexOf("#") + 1));
             ctx.writeAndFlush(result);
