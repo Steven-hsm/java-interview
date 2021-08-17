@@ -19,6 +19,7 @@
         <module>spring-mybatis-plus</module>
         <module>spring-file</module>
         <module>brain-boot</module>
+        <module>spring-flowable</module>
     </modules>
     <dependencies>
         <!-- 测试类 -->
