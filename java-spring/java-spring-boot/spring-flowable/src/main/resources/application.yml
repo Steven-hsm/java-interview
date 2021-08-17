@@ -1,0 +1,18 @@
+server:
+  port: 9099
+spring:
+  application:
+    name: spring-flowable
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.12.113.87:3306/flowable?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 123456
+
+# mybatis个性化配置
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: org.kunpeng.promotion.dao
+  configuration:
+    # 驼峰命名
+    map-underscore-to-camel-case: true

@@ -21,6 +21,7 @@
          <module>other</module>
          <module>rocketMq</module>
          <module>java-utils</module>
+         <module>flowable</module>
      </modules>
 
     <dependencies>
