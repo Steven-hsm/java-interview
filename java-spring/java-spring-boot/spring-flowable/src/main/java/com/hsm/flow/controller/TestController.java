@@ -75,8 +75,8 @@ public class TestController {
     @PostMapping("CompleteTask")
     public void CompleteTask() throws FileNotFoundException {
         Map<String, Object> variables = new HashMap<>();
-        variables.put("approved",true);
-        variables.put("var",12323);
-        myFlowService.completeTask("15013",variables);
+        variables.put("approved",false);
+        variables.put("var",123);
+        myFlowService.completeTask("15045",variables);
     }
 }
