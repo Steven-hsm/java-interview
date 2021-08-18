@@ -22,9 +22,7 @@ import java.util.List;
 public class AgentCallback implements JavaDelegate {
 
     IMyFlowService myFlowService = SpringContextHolder.getBean(IMyFlowService.class);
-    IdentityService identityService = SpringContextHolder.getBean(IdentityService.class);
     RepositoryService repositoryService = SpringContextHolder.getBean(RepositoryService.class);
-
 
     @Override
     public void execute(DelegateExecution execution) {
