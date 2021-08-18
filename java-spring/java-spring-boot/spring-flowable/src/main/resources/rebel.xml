@@ -6,10 +6,10 @@
 -->
 <application generated-by="intellij" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com" xsi:schemaLocation="http://www.zeroturnaround.com http://update.zeroturnaround.com/jrebel/rebel-2_3.xsd">
 
-	<id>flowable</id>
+	<id>spring-flowable</id>
 
 	<classpath>
-		<dir name="E:/github/java-interview/flowable/target/classes">
+		<dir name="E:/github/java-interview/java-spring/java-spring-boot/spring-flowable/target/classes">
 		</dir>
 	</classpath>
 
