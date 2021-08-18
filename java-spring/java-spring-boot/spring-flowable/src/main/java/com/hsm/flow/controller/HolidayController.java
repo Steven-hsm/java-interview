@@ -47,6 +47,4 @@ public class HolidayController {
                                    @RequestParam(value = "approved",required = true) boolean approved){
         return holidayService.completeTask(taskId,approved);
     }
-
-
 }

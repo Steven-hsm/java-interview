@@ -1,5 +1,6 @@
 package com.hsm.flow.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.flowable.engine.ProcessEngine;
 import org.flowable.engine.ProcessEngineConfiguration;
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
@@ -12,9 +13,8 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 
 @Configuration
+@Slf4j
 public class ProcessEngineConfig {
-
-    private Logger logger = LoggerFactory.getLogger(ProcessEngineConfig.class);
     /**
      * 初始化流程引擎
      * @return
@@ -22,7 +22,7 @@ public class ProcessEngineConfig {
     @Primary
     @Bean(name = "processEngine")
     public ProcessEngine initProcessEngine(DataSource dataSource) {
-        logger.info("=============================ProcessEngineBegin=============================");
+        log.info("=============================ProcessEngineBegin=============================");
 
         // 流程引擎配置
         ProcessEngineConfiguration cfg = null;
@@ -37,7 +37,7 @@ public class ProcessEngineConfig {
         }
         // 初始化流程引擎对象
         ProcessEngine processEngine = cfg.buildProcessEngine();
-        logger.info("=============================ProcessEngineEnd=============================");
+        log.info("=============================ProcessEngineEnd=============================");
         return processEngine;
     }
 }
