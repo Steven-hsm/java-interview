@@ -1,0 +1,45 @@
+JavaFX Separator组件显示了组件组之间的视觉分隔——例如JavaFX VBox或JavaFX VBox中的控件组之间的分隔。JavaFX分隔符由JavaFX .scene.control.Separator类表示
+
+### 1. 完整的例子
+
+```java
+import javafx.application.Application;
+import javafx.geometry.Orientation;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class SeparatorExample extends Application {
+
+  public static void main(String[] args) {
+    launch(args);
+  }
+
+  public void start(Stage primaryStage) {
+
+    Label label1 = new Label("Component 1");
+    Label label2 = new Label("Component 2");
+
+    Separator separator = new Separator(Orientation.HORIZONTAL);
+
+    VBox vBox = new VBox(label1, separator, label2);
+    Scene scene = new Scene(vBox);
+
+    primaryStage.setScene(scene);
+    primaryStage.setTitle("JavaFX App");
+
+    primaryStage.show();
+  }
+}
+```
+
+### 2. 拆分方向
+
+```java
+Separator separator = new Separator(Orientation.HORIZONTAL);
+
+Separator separator = new Separator(Orientation.VERTICAL);
+```
+
