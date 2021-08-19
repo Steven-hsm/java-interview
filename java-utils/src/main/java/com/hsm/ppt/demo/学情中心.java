@@ -2,13 +2,10 @@ package com.hsm.ppt.demo;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.sl.usermodel.TextParagraph;
-import org.apache.poi.sl.usermodel.TextShape;
 import org.apache.poi.xslf.usermodel.*;
-import org.openxmlformats.schemas.presentationml.x2006.main.CTGroupShape;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 /**
