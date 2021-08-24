@@ -65,21 +65,21 @@ public class Teacher {
                         for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                             cell.setBorderWidth(value, 2);
                             cell.setBorderColor(value, Color.white);
-                            cell.setFillColor(Color.blue);
+                            cell.setFillColor(new Color(79, 129, 189));
                         }
                         //设置单元格的字体样式
                         XSLFTextParagraph paragraph = getTextParagraph(cell);
                         paragraph.setTextAlign(TextParagraph.TextAlign.CENTER);
                         XSLFTextRun text = getTextRun(paragraph);
                         text.setFontSize(13D);
-                        text.setFontColor(Color.black);
+                        text.setFontColor(Color.white);
                         text.setText(columnList.get(column));
                     } else {
                         KnpRate knpRate = rowList.get(row - 1);
                         for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                             cell.setBorderWidth(value, 1);
                             cell.setBorderColor(value, Color.white);
-                            cell.setFillColor(Color.PINK);
+                            cell.setFillColor(new Color(208, 216, 232));
                         }
                         //设置单元格的字体样式
                         XSLFTextParagraph paragraph = getTextParagraph(cell);
@@ -150,8 +150,9 @@ public class Teacher {
                         for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                             cell.setBorderWidth(value, 2);
                             cell.setBorderColor(value, Color.white);
-                            cell.setFillColor(Color.blue);
+                            cell.setFillColor(new Color(79, 129, 189));
                         }
+                        text.setFontColor(Color.white);
                         text.setFontSize(13D);
                         if (column == 0) {
                             text.setText(rowList.get(row));
@@ -162,7 +163,7 @@ public class Teacher {
                         for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                             cell.setBorderWidth(value, 1);
                             cell.setBorderColor(value, Color.white);
-                            cell.setFillColor(Color.PINK);
+                            cell.setFillColor(new Color(208, 216, 232));
                         }
                         text.setFontSize(8D);
                     }
@@ -204,13 +205,13 @@ public class Teacher {
         for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
             headCell.setBorderWidth(value, 2);
             headCell.setBorderColor(value, Color.white);
-            headCell.setFillColor(Color.blue);
+            headCell.setFillColor(new Color(79, 129, 189));
         }
         XSLFTextParagraph paragraph = getTextParagraph(headCell);
         paragraph.setTextAlign(TextParagraph.TextAlign.CENTER);
         XSLFTextRun text = getTextRun(paragraph);
         text.setFontSize(13D);
-        text.setFontColor(Color.black);
+        text.setFontColor(Color.white);
         text.setText("班级后五名");
         //列元素
         for (int i = 0; i < cloumnList.size(); i++) {
@@ -223,7 +224,7 @@ public class Teacher {
             for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                 tableCell.setBorderWidth(value, 2);
                 tableCell.setBorderColor(value, Color.white);
-                tableCell.setFillColor(Color.PINK);
+                tableCell.setFillColor(new Color(208, 216, 232));
             }
             XSLFTextParagraph cellParagraph = getTextParagraph(tableCell);
             cellParagraph.setTextAlign(TextParagraph.TextAlign.CENTER);
@@ -249,7 +250,7 @@ public class Teacher {
                 for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                     tableCell.setBorderWidth(value, 1);
                     tableCell.setBorderColor(value, Color.white);
-                    tableCell.setFillColor(Color.PINK);
+                    tableCell.setFillColor(new Color(208, 216, 232));
                 }
                 XSLFTextParagraph cellParagraph = getTextParagraph(tableCell);
                 cellParagraph.setTextAlign(TextParagraph.TextAlign.CENTER);
@@ -283,13 +284,13 @@ public class Teacher {
         for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
             headCell.setBorderWidth(value, 2);
             headCell.setBorderColor(value, Color.white);
-            headCell.setFillColor(Color.blue);
+            headCell.setFillColor(new Color(79, 129, 189));
         }
         XSLFTextParagraph paragraph = getTextParagraph(headCell);
         paragraph.setTextAlign(TextParagraph.TextAlign.CENTER);
         XSLFTextRun text = getTextRun(paragraph);
         text.setFontSize(13D);
-        text.setFontColor(Color.black);
+        text.setFontColor(Color.white);
         text.setText("班级前五名");
         //列元素
         for (int i = 0; i < cloumnList.size(); i++) {
@@ -302,7 +303,7 @@ public class Teacher {
             for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                 tableCell.setBorderWidth(value, 2);
                 tableCell.setBorderColor(value, Color.white);
-                tableCell.setFillColor(Color.PINK);
+                tableCell.setFillColor(new Color(208, 216, 232));
             }
             XSLFTextParagraph cellParagraph = getTextParagraph(tableCell);
             cellParagraph.setTextAlign(TextParagraph.TextAlign.CENTER);
@@ -328,7 +329,7 @@ public class Teacher {
                 for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                     tableCell.setBorderWidth(value, 1);
                     tableCell.setBorderColor(value, Color.white);
-                    tableCell.setFillColor(Color.PINK);
+                    tableCell.setFillColor(new Color(208, 216, 232));
                 }
                 XSLFTextParagraph cellParagraph = getTextParagraph(tableCell);
                 cellParagraph.setTextAlign(TextParagraph.TextAlign.CENTER);
@@ -362,13 +363,13 @@ public class Teacher {
         for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
             headCell.setBorderWidth(value, 2);
             headCell.setBorderColor(value, Color.white);
-            headCell.setFillColor(Color.blue);
+            headCell.setFillColor(new Color(79, 129, 189));
         }
         XSLFTextParagraph paragraph = getTextParagraph(headCell);
         paragraph.setTextAlign(TextParagraph.TextAlign.CENTER);
         XSLFTextRun text = getTextRun(paragraph);
         text.setFontSize(13D);
-        text.setFontColor(Color.black);
+        text.setFontColor(Color.white);
         text.setText("班级大幅退步");
         //列元素
         for (int i = 0; i < cloumnList.size(); i++) {
@@ -381,7 +382,7 @@ public class Teacher {
             for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                 tableCell.setBorderWidth(value, 2);
                 tableCell.setBorderColor(value, Color.white);
-                tableCell.setFillColor(Color.PINK);
+                tableCell.setFillColor(new Color(208, 216, 232));
             }
             XSLFTextParagraph cellParagraph = getTextParagraph(tableCell);
             cellParagraph.setTextAlign(TextParagraph.TextAlign.CENTER);
@@ -407,7 +408,7 @@ public class Teacher {
                 for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                     tableCell.setBorderWidth(value, 1);
                     tableCell.setBorderColor(value, Color.white);
-                    tableCell.setFillColor(Color.PINK);
+                    tableCell.setFillColor(new Color(208, 216, 232));
                 }
                 XSLFTextParagraph cellParagraph = getTextParagraph(tableCell);
                 cellParagraph.setTextAlign(TextParagraph.TextAlign.CENTER);
@@ -447,13 +448,13 @@ public class Teacher {
         for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
             headCell.setBorderWidth(value, 2);
             headCell.setBorderColor(value, Color.white);
-            headCell.setFillColor(Color.blue);
+            headCell.setFillColor(new Color(79, 129, 189));
         }
         XSLFTextParagraph paragraph = getTextParagraph(headCell);
         paragraph.setTextAlign(TextParagraph.TextAlign.CENTER);
         XSLFTextRun text = getTextRun(paragraph);
         text.setFontSize(13D);
-        text.setFontColor(Color.black);
+        text.setFontColor(Color.white);
         text.setText("班级大幅进步");
         //列元素
         for (int i = 0; i < cloumnList.size(); i++) {
@@ -466,7 +467,7 @@ public class Teacher {
             for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                 tableCell.setBorderWidth(value, 2);
                 tableCell.setBorderColor(value, Color.white);
-                tableCell.setFillColor(Color.PINK);
+                tableCell.setFillColor(new Color(208, 216, 232));
             }
             XSLFTextParagraph cellParagraph = getTextParagraph(tableCell);
             cellParagraph.setTextAlign(TextParagraph.TextAlign.CENTER);
@@ -492,7 +493,7 @@ public class Teacher {
                 for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                     tableCell.setBorderWidth(value, 1);
                     tableCell.setBorderColor(value, Color.white);
-                    tableCell.setFillColor(Color.PINK);
+                    tableCell.setFillColor(new Color(208, 216, 232));
                 }
                 XSLFTextParagraph cellParagraph = getTextParagraph(tableCell);
                 cellParagraph.setTextAlign(TextParagraph.TextAlign.CENTER);
@@ -560,19 +561,19 @@ public class Teacher {
                     for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                         cell.setBorderWidth(value, 2);
                         cell.setBorderColor(value, Color.white);
-                        cell.setFillColor(Color.blue);
+                        cell.setFillColor(new Color(79, 129, 189));
                     }
                     //设置单元格的字体样式
                     XSLFTextParagraph paragraph = getTextParagraph(cell);
                     paragraph.setTextAlign(TextParagraph.TextAlign.CENTER);
                     XSLFTextRun text = getTextRun(paragraph);
                     text.setFontSize(13D);
-                    text.setFontColor(Color.black);
+                    text.setFontColor(Color.white);
                 } else {
                     for (TableCell.BorderEdge value : TableCell.BorderEdge.values()) {
                         cell.setBorderWidth(value, 1);
                         cell.setBorderColor(value, Color.white);
-                        cell.setFillColor(Color.PINK);
+                        cell.setFillColor(new Color(208, 216, 232));
                     }
                     //设置单元格的字体样式
                     XSLFTextParagraph paragraph = getTextParagraph(cell);

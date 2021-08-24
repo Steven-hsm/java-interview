@@ -30,10 +30,13 @@ public class DrinkStationMain extends Application {
         VBox box1_1 = get1_1();
         LineChart lineChart1_2 = get1_2();
         Separator separator = new Separator(Orientation.VERTICAL);
-        Button button2 = new Button("Button Number 2");
-
         HBox hbox1 = new HBox(box1_1,separator,lineChart1_2);
-        HBox hbox2 = new HBox();
+
+
+        GridPane gridPane2_1 = get2_1();
+        HBox hbox2 = new HBox(gridPane2_1);
+        hbox2.setStyle("-fx-background-color:#BFDCC0");
+
         HBox hbox3 = new HBox();
         VBox vBox = new VBox(hbox1,hbox2,hbox3);
 
@@ -44,6 +47,21 @@ public class DrinkStationMain extends Application {
         stage.show();
     }
 
+    private GridPane get2_1() {
+        GridPane gridPane = new GridPane();
+        gridPane.setPrefHeight(280);
+        gridPane.setPrefWidth(900);
+
+        Label label = new Label("ColdNTc");
+        TextField text = new TextField("");
+        text.setPrefWidth(10);
+        HBox vBox = new HBox(label, text);
+        vBox.setSpacing(5);
+        gridPane.add(vBox,0,0);
+
+        return gridPane;
+    }
+
     private LineChart get1_2() {
         NumberAxis xAxis = new NumberAxis();
         xAxis.setLabel("Minutes");
@@ -51,12 +69,14 @@ public class DrinkStationMain extends Application {
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Template");
         LineChart lineChart = new LineChart(xAxis, yAxis);
-        lineChart.setPrefHeight(220);
+        lineChart.setPrefHeight(250);
         lineChart.setPrefWidth(750);
         lineChart.setTitleSide(Side.TOP);
         lineChart.setTitle("title");
+        lineChart.setLegendVisible(false);
 
         XYChart.Series dataSeries1 = new XYChart.Series();
+
         dataSeries1.getData().add(new XYChart.Data( 1, 567));
         dataSeries1.getData().add(new XYChart.Data( 5, 612));
         dataSeries1.getData().add(new XYChart.Data(10, 800));
