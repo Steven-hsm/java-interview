@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -49,7 +50,7 @@ public class DrinkStationMain extends Application {
 
         Scene Scene = new Scene(vBox);
         stage.setScene(Scene);
-        stage.setHeight(800);
+        stage.setHeight(900);
         stage.setWidth(1500);
         stage.show();
     }
@@ -59,93 +60,239 @@ public class DrinkStationMain extends Application {
         VBox vbox2_2_2 = get2_2_2();
         VBox vbox2_2_3 = get2_2_3();
         VBox vbox2_2_4 = get2_2_4();
+        VBox vbox2_2_5 = get2_2_5();
+        VBox vbox2_2_6 = get2_2_6();
 
-        HBox hBox = new HBox(vbox2_2_1, vbox2_2_2, vbox2_2_3,vbox2_2_4);
+        HBox hBox = new HBox(vbox2_2_1, vbox2_2_2, vbox2_2_3,vbox2_2_4,vbox2_2_5,vbox2_2_6);
         hBox.setSpacing(30);
         return hBox;
+    }
+
+    private VBox get2_2_6() {
+        Label label1 = new Label("Chiller_value:");
+        label1.setPrefWidth(150);
+        label1.setPrefHeight(15);
+        label1.setTextFill(Color.RED);
+
+        Circle circle1 = new Circle();
+        circle1.setRadius(10);
+        circle1.setFill(Color.valueOf("#808080"));
+        HBox hBox1 = new HBox(label1, circle1);
+        hBox1.setSpacing(10);
+
+        Label label2 = new Label("Alkaline_value:");
+        label2.setPrefWidth(150);
+        label2.setPrefHeight(15);
+        label2.setTextFill(Color.RED);
+        Circle circle2 = new Circle();
+        circle2.setRadius(10);
+        circle2.setFill(Color.valueOf("#808080"));
+        HBox hBox2 = new HBox(label2, circle2);
+        hBox2.setSpacing(10);
+
+        Label label3 = new Label("Compressor:");
+        label3.setPrefWidth(150);
+        label3.setPrefHeight(15);
+        label3.setTextFill(Color.RED);
+        Circle circle3 = new Circle();
+        circle3.setRadius(10);
+        circle3.setFill(Color.valueOf("#808080"));
+        HBox hBox3 = new HBox(label3, circle3);
+        hBox3.setSpacing(10);
+
+        VBox vBox = new VBox(hBox1, hBox2, hBox3);
+        vBox.setSpacing(5);
+        return vBox;
+    }
+
+    private VBox get2_2_5() {
+        Label label1 = new Label("FAN:");
+        label1.setPrefWidth(150);
+        label1.setPrefHeight(15);
+        label1.setTextFill(Color.RED);
+
+        Circle circle1 = new Circle();
+        circle1.setRadius(10);
+        circle1.setFill(Color.valueOf("#808080"));
+        HBox hBox1 = new HBox(label1, circle1);
+        hBox1.setSpacing(30);
+
+        Label label2 = new Label("CO2_value:");
+        label2.setPrefWidth(150);
+        label2.setPrefHeight(15);
+        label2.setTextFill(Color.RED);
+        Circle circle2 = new Circle();
+        circle2.setRadius(10);
+        circle2.setFill(Color.valueOf("#808080"));
+        HBox hBox2 = new HBox(label2, circle2);
+        hBox2.setSpacing(30);
+
+        Label label3 = new Label("Cold_value:");
+        label3.setPrefWidth(150);
+        label3.setPrefHeight(15);
+        label3.setTextFill(Color.RED);
+        Circle circle3 = new Circle();
+        circle3.setRadius(10);
+        circle3.setFill(Color.valueOf("#808080"));
+        HBox hBox3 = new HBox(label3, circle3);
+        hBox3.setSpacing(30);
+
+        Label label4 = new Label("Cold_value_2rd:");
+        label4.setPrefWidth(150);
+        label4.setPrefHeight(15);
+        label4.setTextFill(Color.RED);
+        Circle circle4 = new Circle();
+        circle4.setRadius(10);
+        circle4.setFill(Color.valueOf("#808080"));
+        HBox hBox4 = new HBox(label4, circle4);
+        hBox4.setSpacing(30);
+
+        Label label5 = new Label("Hot_value:");
+        label5.setPrefWidth(150);
+        label5.setPrefHeight(15);
+        label5.setTextFill(Color.RED);
+        Circle circle5 = new Circle();
+        circle5.setRadius(10);
+        circle5.setFill(Color.valueOf("#808080"));
+        HBox hBox5 = new HBox(label5, circle5);
+        hBox5.setSpacing(30);
+
+        Label label6 = new Label("Level_value:");
+        label6.setPrefWidth(150);
+        label6.setPrefHeight(15);
+        label6.setTextFill(Color.RED);
+        Circle circle6 = new Circle();
+        circle6.setRadius(10);
+        circle6.setFill(Color.valueOf("#808080"));
+        HBox hBox6 = new HBox(label6, circle6);
+        hBox6.setSpacing(30);
+
+        Label label7 = new Label("Main_level:");
+        label7.setPrefWidth(150);
+        label7.setPrefHeight(15);
+        label7.setTextFill(Color.RED);
+        Circle circle7 = new Circle();
+        circle7.setRadius(10);
+        circle7.setFill(Color.valueOf("#808080"));
+        HBox hBox7 = new HBox(label7, circle7);
+        hBox7.setSpacing(30);
+
+        Label label8 = new Label("Sparkling_value:");
+        label8.setPrefWidth(180);
+        label8.setPrefHeight(15);
+        label8.setTextFill(Color.RED);
+        Circle circle8 = new Circle();
+        circle8.setRadius(10);
+        circle8.setFill(Color.valueOf("#808080"));
+        HBox hBox8 = new HBox(label8, circle8);
+        //hBox8.setSpacing();
+
+        Label label9 = new Label("Sparkling_value_2rd:");
+        label9.setPrefWidth(180);
+        label9.setPrefHeight(15);
+        label9.setTextFill(Color.RED);
+        Circle circle9 = new Circle();
+        circle9.setRadius(10);
+        circle9.setFill(Color.valueOf("#808080"));
+        HBox hBox9 = new HBox(label9, circle9);
+        //hBox8.setSpacing(20);
+
+        VBox vBox = new VBox(hBox1, hBox2, hBox3, hBox4, hBox5, hBox6, hBox7,hBox8,hBox9);
+        vBox.setSpacing(5);
+        return vBox;
     }
 
     private VBox get2_2_4() {
         Label label1 = new Label("Y_Button_IN:");
         label1.setPrefWidth(150);
         label1.setPrefHeight(15);
-        label1.setTextFill(Color.BLUE);
-        TextField text1 = new TextField("");
-        text1.setPrefWidth(80);
-        HBox hBox1 = new HBox(label1, text1);
-        hBox1.setSpacing(20);
+        label1.setTextFill(Color.valueOf("#800080"));
+
+        Circle circle1 = new Circle();
+        circle1.setRadius(10);
+        circle1.setFill(Color.valueOf("#808080"));
+        HBox hBox1 = new HBox(label1, circle1);
+        hBox1.setSpacing(30);
 
         Label label2 = new Label("W_Button_IN");
         label2.setPrefWidth(150);
         label2.setPrefHeight(15);
-        label2.setTextFill(Color.BLUE);
-        TextField text2 = new TextField("");
-        text2.setPrefWidth(80);
-        HBox hBox2 = new HBox(label2, text2);
-        hBox2.setSpacing(20);
+        label2.setTextFill(Color.valueOf("#800080"));
+        Circle circle2 = new Circle();
+        circle2.setRadius(10);
+        circle2.setFill(Color.valueOf("#808080"));
+        HBox hBox2 = new HBox(label2, circle2);
+        hBox2.setSpacing(30);
 
         Label label3 = new Label("B_Button_IN");
         label3.setPrefWidth(150);
         label3.setPrefHeight(15);
-        label3.setTextFill(Color.BLUE);
-        TextField text3 = new TextField("");
-        text3.setPrefWidth(80);
-        HBox hBox3 = new HBox(label3, text3);
-        hBox3.setSpacing(20);
+        label3.setTextFill(Color.valueOf("#800080"));
+        Circle circle3 = new Circle();
+        circle3.setRadius(10);
+        circle3.setFill(Color.valueOf("#808080"));
+        HBox hBox3 = new HBox(label3, circle3);
+        hBox3.setSpacing(30);
 
         Label label4 = new Label("G_Button_IN");
         label4.setPrefWidth(150);
         label4.setPrefHeight(15);
-        label4.setTextFill(Color.BLUE);
-        TextField text4 = new TextField("");
-        text4.setPrefWidth(80);
-        HBox hBox4 = new HBox(label4, text4);
-        hBox4.setSpacing(20);
+        label4.setTextFill(Color.valueOf("#800080"));
+        Circle circle4 = new Circle();
+        circle4.setRadius(10);
+        circle4.setFill(Color.valueOf("#808080"));
+        HBox hBox4 = new HBox(label4, circle4);
+        hBox4.setSpacing(30);
 
         Label label5 = new Label("R_Button_IN");
         label5.setPrefWidth(150);
         label5.setPrefHeight(15);
-        label5.setTextFill(Color.BLUE);
-        TextField text5 = new TextField("");
-        text5.setPrefWidth(80);
-        HBox hBox5 = new HBox(label5, text5);
-        hBox5.setSpacing(20);
+        label5.setTextFill(Color.valueOf("#800080"));
+        Circle circle5 = new Circle();
+        circle5.setRadius(10);
+        circle5.setFill(Color.valueOf("#808080"));
+        HBox hBox5 = new HBox(label5, circle5);
+        hBox5.setSpacing(30);
 
         Label label6 = new Label("Filter_Button_IN");
         label6.setPrefWidth(150);
         label6.setPrefHeight(15);
-        label6.setTextFill(Color.BLUE);
-        TextField text6 = new TextField("");
-        text6.setPrefWidth(80);
-        HBox hBox6 = new HBox(label6, text6);
-        hBox6.setSpacing(20);
+        label6.setTextFill(Color.valueOf("#800080"));
+        Circle circle6 = new Circle();
+        circle6.setRadius(10);
+        circle6.setFill(Color.valueOf("#808080"));
+        HBox hBox6 = new HBox(label6, circle6);
+        hBox6.setSpacing(30);
 
         Label label7 = new Label("Debug_Button_IN");
         label7.setPrefWidth(150);
         label7.setPrefHeight(15);
-        label7.setTextFill(Color.BLUE);
-        TextField text7 = new TextField("");
-        text7.setPrefWidth(80);
-        HBox hBox7 = new HBox(label7, text7);
-        hBox7.setSpacing(20);
+        label7.setTextFill(Color.valueOf("#800080"));
+        Circle circle7 = new Circle();
+        circle7.setRadius(10);
+        circle7.setFill(Color.valueOf("#808080"));
+        HBox hBox7 = new HBox(label7, circle7);
+        hBox7.setSpacing(30);
 
         Label label8 = new Label("Cold_level_switch_up");
-        label8.setPrefWidth(150);
+        label8.setPrefWidth(180);
         label8.setPrefHeight(15);
-        label8.setTextFill(Color.BLUE);
-        TextField text8 = new TextField("");
-        text8.setPrefWidth(80);
-        HBox hBox8 = new HBox(label8, text8);
-        hBox8.setSpacing(20);
+        label8.setTextFill(Color.valueOf("#800080"));
+        Circle circle8 = new Circle();
+        circle8.setRadius(10);
+        circle8.setFill(Color.valueOf("#808080"));
+        HBox hBox8 = new HBox(label8, circle8);
+        //hBox8.setSpacing();
 
         Label label9 = new Label("Cold_level_swtich_down");
-        label9.setPrefWidth(150);
+        label9.setPrefWidth(180);
         label9.setPrefHeight(15);
-        label9.setTextFill(Color.BLUE);
-        TextField text9 = new TextField("");
-        text9.setPrefWidth(80);
-        HBox hBox9 = new HBox(label9, text9);
-        hBox8.setSpacing(20);
+        label9.setTextFill(Color.valueOf("#800080"));
+        Circle circle9 = new Circle();
+        circle9.setRadius(10);
+        circle9.setFill(Color.valueOf("#808080"));
+        HBox hBox9 = new HBox(label9, circle9);
+        //hBox8.setSpacing(20);
 
         VBox vBox = new VBox(hBox1, hBox2, hBox3, hBox4, hBox5, hBox6, hBox7,hBox8,hBox9);
         vBox.setSpacing(5);
@@ -162,7 +309,7 @@ public class DrinkStationMain extends Application {
         label2.setPrefWidth(150);
         label2.setTextFill(Color.BLUE);
         TextField text2 = new TextField("");
-        text2.setPrefWidth(80);
+        text2.setPrefWidth(60);
         HBox hBox2 = new HBox(label2, text2);
         hBox2.setSpacing(20);
 
@@ -170,7 +317,7 @@ public class DrinkStationMain extends Application {
         label3.setPrefWidth(150);
         label3.setTextFill(Color.BLUE);
         TextField text3 = new TextField("");
-        text3.setPrefWidth(80);
+        text3.setPrefWidth(60);
         HBox hBox3 = new HBox(label3, text3);
         hBox3.setSpacing(20);
 
@@ -178,7 +325,7 @@ public class DrinkStationMain extends Application {
         label4.setPrefWidth(150);
         label4.setTextFill(Color.BLUE);
         TextField text4 = new TextField("");
-        text4.setPrefWidth(80);
+        text4.setPrefWidth(60);
         HBox hBox4 = new HBox(label4, text4);
         hBox4.setSpacing(20);
 
@@ -186,7 +333,7 @@ public class DrinkStationMain extends Application {
         label5.setPrefWidth(150);
         label5.setTextFill(Color.BLUE);
         TextField text5 = new TextField("");
-        text5.setPrefWidth(80);
+        text5.setPrefWidth(60);
         HBox hBox5 = new HBox(label5, text5);
         hBox5.setSpacing(20);
 
@@ -194,7 +341,7 @@ public class DrinkStationMain extends Application {
         label6.setPrefWidth(150);
         label6.setTextFill(Color.BLUE);
         TextField text6 = new TextField("");
-        text6.setPrefWidth(80);
+        text6.setPrefWidth(60);
         HBox hBox6 = new HBox(label6, text6);
         hBox6.setSpacing(20);
 
@@ -208,7 +355,7 @@ public class DrinkStationMain extends Application {
         label1.setPrefWidth(150);
         label1.setTextFill(Color.BLUE);
         TextField text1 = new TextField("");
-        text1.setPrefWidth(80);
+        text1.setPrefWidth(60);
         HBox hBox1 = new HBox(label1, text1);
         hBox1.setSpacing(20);
 
@@ -216,7 +363,7 @@ public class DrinkStationMain extends Application {
         label2.setPrefWidth(150);
         label2.setTextFill(Color.BLUE);
         TextField text2 = new TextField("");
-        text2.setPrefWidth(80);
+        text2.setPrefWidth(60);
         HBox hBox2 = new HBox(label2, text2);
         hBox2.setSpacing(20);
 
@@ -224,7 +371,7 @@ public class DrinkStationMain extends Application {
         label3.setPrefWidth(150);
         label3.setTextFill(Color.BLUE);
         TextField text3 = new TextField("");
-        text3.setPrefWidth(80);
+        text3.setPrefWidth(60);
         HBox hBox3 = new HBox(label3, text3);
         hBox3.setSpacing(20);
 
@@ -232,7 +379,7 @@ public class DrinkStationMain extends Application {
         label4.setPrefWidth(150);
         label4.setTextFill(Color.BLUE);
         TextField text4 = new TextField("");
-        text4.setPrefWidth(80);
+        text4.setPrefWidth(60);
         HBox hBox4 = new HBox(label4, text4);
         hBox4.setSpacing(20);
 
@@ -240,7 +387,7 @@ public class DrinkStationMain extends Application {
         label5.setPrefWidth(150);
         label5.setTextFill(Color.BLUE);
         TextField text5 = new TextField("");
-        text5.setPrefWidth(80);
+        text5.setPrefWidth(60);
         HBox hBox5 = new HBox(label5, text5);
         hBox5.setSpacing(20);
 
@@ -248,7 +395,7 @@ public class DrinkStationMain extends Application {
         label6.setPrefWidth(150);
         label6.setTextFill(Color.BLUE);
         TextField text6 = new TextField("");
-        text6.setPrefWidth(80);
+        text6.setPrefWidth(60);
         HBox hBox6 = new HBox(label6, text6);
         hBox6.setSpacing(20);
 
@@ -256,7 +403,7 @@ public class DrinkStationMain extends Application {
         label7.setPrefWidth(150);
         label7.setTextFill(Color.BLUE);
         TextField text7 = new TextField("");
-        text7.setPrefWidth(80);
+        text7.setPrefWidth(60);
         HBox hBox7 = new HBox(label7, text7);
         hBox7.setSpacing(20);
 
@@ -264,7 +411,7 @@ public class DrinkStationMain extends Application {
         label8.setPrefWidth(150);
         label8.setTextFill(Color.BLUE);
         TextField text8 = new TextField("");
-        text8.setPrefWidth(80);
+        text8.setPrefWidth(60);
         HBox hBox8 = new HBox(label8, text8);
         hBox8.setSpacing(20);
 
@@ -278,7 +425,7 @@ public class DrinkStationMain extends Application {
         label1.setPrefWidth(150);
         label1.setTextFill(Color.BLUE);
         TextField text1 = new TextField("");
-        text1.setPrefWidth(80);
+        text1.setPrefWidth(60);
         HBox hBox1 = new HBox(label1, text1);
         hBox1.setSpacing(20);
 
@@ -286,7 +433,7 @@ public class DrinkStationMain extends Application {
         label2.setPrefWidth(150);
         label2.setTextFill(Color.BLUE);
         TextField text2 = new TextField("");
-        text2.setPrefWidth(80);
+        text2.setPrefWidth(60);
         HBox hBox2 = new HBox(label2, text2);
         hBox2.setSpacing(20);
 
@@ -294,7 +441,7 @@ public class DrinkStationMain extends Application {
         label3.setPrefWidth(150);
         label3.setTextFill(Color.BLUE);
         TextField text3 = new TextField("");
-        text3.setPrefWidth(80);
+        text3.setPrefWidth(60);
         HBox hBox3 = new HBox(label3, text3);
         hBox3.setSpacing(20);
 
@@ -302,7 +449,7 @@ public class DrinkStationMain extends Application {
         label4.setPrefWidth(150);
         label4.setTextFill(Color.BLUE);
         TextField text4 = new TextField("");
-        text4.setPrefWidth(80);
+        text4.setPrefWidth(60);
         HBox hBox4 = new HBox(label4, text4);
         hBox4.setSpacing(20);
 
@@ -310,7 +457,7 @@ public class DrinkStationMain extends Application {
         label5.setPrefWidth(150);
         label5.setTextFill(Color.BLUE);
         TextField text5 = new TextField("");
-        text5.setPrefWidth(80);
+        text5.setPrefWidth(60);
         HBox hBox5 = new HBox(label5, text5);
         hBox5.setSpacing(20);
 
@@ -318,7 +465,7 @@ public class DrinkStationMain extends Application {
         label6.setPrefWidth(150);
         label6.setTextFill(Color.BLUE);
         TextField text6 = new TextField("");
-        text6.setPrefWidth(80);
+        text6.setPrefWidth(60);
         HBox hBox6 = new HBox(label6, text6);
         hBox6.setSpacing(20);
 
@@ -326,7 +473,7 @@ public class DrinkStationMain extends Application {
         label7.setPrefWidth(150);
         label7.setTextFill(Color.BLUE);
         TextField text7 = new TextField("");
-        text7.setPrefWidth(80);
+        text7.setPrefWidth(60);
         HBox hBox7 = new HBox(label7, text7);
         hBox7.setSpacing(20);
 
@@ -334,7 +481,7 @@ public class DrinkStationMain extends Application {
         label8.setPrefWidth(150);
         label8.setTextFill(Color.BLUE);
         TextField text8 = new TextField("");
-        text8.setPrefWidth(80);
+        text8.setPrefWidth(60);
         HBox hBox8 = new HBox(label8, text8);
         hBox8.setSpacing(20);
 
