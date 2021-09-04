@@ -39,5 +39,4 @@ public class RedisUtilsTest {
         System.out.println(ping);
     }
 
-
 }

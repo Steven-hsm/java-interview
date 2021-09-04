@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @Classname Teacher
@@ -30,8 +31,212 @@ public class Teacher {
         dealFour(slides.get(3));
         //处理第五页知识点掌握情况
         dealFive(ppt, slides.get(4));
+        //班级共性错题
+        dealCommonError(ppt);
+        //班级其他错题
+        dealOtherError(ppt);
 
-        ppt.write(new FileOutputStream("教师讲义.pptx"));
+        ppt.write(new FileOutputStream(String.format("教师讲义%s.pptx",new Random().nextInt(11000))));
+    }
+
+    /**
+     * 处理班级其他错题
+     * @param ppt
+     */
+    private static void dealOtherError(XMLSlideShow ppt) {
+        XSLFSlide slide = ppt.createSlide();
+
+        //第一页需要加上04 班级共性错题
+        XSLFTextBox textBox = slide.createTextBox();
+        textBox.setAnchor(new Rectangle(30,20,200,30));
+        XSLFTextParagraph paragraph = getTextParagraph(textBox);
+        paragraph.setTextAlign(TextParagraph.TextAlign.LEFT);
+        XSLFTextRun title = getTextRun(paragraph);
+        title.setText("05  班级其他错题");
+        title.setFontColor(new Color(138, 204, 80));
+        title.setFontSize(18D);
+
+        //第一页需要加上04 班级共性错题
+        XSLFTextBox textBox_title = slide.createTextBox();
+        textBox_title.setAnchor(new Rectangle(30,70,65,25));
+        textBox_title.setFillColor(new Color(103, 178, 170));
+        XSLFTextParagraph paragraph_title = getTextParagraph(textBox_title);
+        paragraph_title.setTextAlign(TextParagraph.TextAlign.LEFT);
+
+        XSLFTextRun title_question = getTextRun(paragraph_title);
+        title_question.setText(String.format("第%s题",5));
+        title_question.setFontColor(Color.white);
+        title_question.setFontSize(16D);
+
+        //班级得分率相关的
+        XSLFTextBox textBox_scoreRate = slide.createTextBox();
+        textBox_scoreRate.setAnchor(new Rectangle(100,73,550,15));
+        XSLFTextParagraph paragraph_scoreRate = getTextParagraph(textBox_scoreRate);
+        paragraph_scoreRate.setTextAlign(TextParagraph.TextAlign.LEFT);
+
+        XSLFTextRun title_scoreRate = getTextRun(paragraph_scoreRate);
+        title_scoreRate.setText(String.format("班级得分率:%s，年级得分率：%s，答对：%s人，答错：%s人","0.21%","45.99%",4,53));
+        title_scoreRate.setFontColor(Color.white);
+        title_scoreRate.setFontSize(12D);
+
+        //答错学生
+        XSLFTextBox textBox_errorPeople = slide.createTextBox();
+        textBox_errorPeople.setAnchor(new Rectangle(33,100,500,50));
+        XSLFTextParagraph paragraph_errorPeople = getTextParagraph(textBox_errorPeople);
+        paragraph_errorPeople.setTextAlign(TextParagraph.TextAlign.LEFT);
+
+        XSLFTextRun title_errorDesc= getTextRun(paragraph_errorPeople);
+        title_errorDesc.setText("答错学生:   ");
+        title_errorDesc.setFontColor(Color.RED);
+        title_errorDesc.setFontSize(8D);
+
+        XSLFTextRun title_errorPeople= getTextRun(paragraph_errorPeople);
+        title_errorPeople.setText("邓舒月、刁卉、李美仪、蔡浩霖、陈嘉利、陈铭诗、陈俊澄、陈文俊、李乐诗、耿言、李琦、孔炫斌、杜君豪、崔珏峥、任娟、" +
+                "潘紫恩、梁欣然15、陆悦、庞珊、罗兆俊、林梦茨、李扬波、刘丰铭、盘欣峒、欧洵傲、邱煜博、邵恩、徐义沣、吴雪静、先玺" +
+                "蓉、徐卓君、谢洋、许安琦、谢雅琪、谭晰元、向攀嵩、谢思进、徐雨菲、姚钧杰、许培昇、徐子琪、詹永濠、张炜锋、林敬" +
+                "圣、钟卓霖、邹乐欣、范轩毓、游智翔、郑依琪、张明哲、陈梓豪、张政、郑子莹");
+        title_errorPeople.setFontColor(Color.white);
+        title_errorPeople.setFontSize(8D);
+
+        //原题信息
+        XSLFTextBox textBox_question = slide.createTextBox();
+        textBox_question.setAnchor(new Rectangle(30,160,500,200));
+        textBox_question.setFillColor(Color.white);
+        XSLFTextParagraph paragraph_question = getTextParagraph(textBox_question);
+        paragraph_question.setTextAlign(TextParagraph.TextAlign.LEFT);
+
+        XSLFTextRun text_question = getTextRun(paragraph_question);
+        text_question.setText(String.format("在平面直角坐标系中，点 一定在第（ ）象限\n" +
+                "  A. 第一象限     B. 第二象限\n" +
+                "  C. 第三象限     D. 第四象限\n" +
+                "\n" +
+                "【答案】B\n" +
+                "【解析】\n" +
+                "∵点 它的横坐标 ，纵坐标 ， ∴符合点在第二象限的条件，故点 一定在第二象限．\n" +
+                "故选：B．\n",2));
+        text_question.setFontColor(Color.black);
+        text_question.setFontSize(9D);
+
+        dealErrorCase(ppt);
+    }
+
+
+    /**
+     * 处理班级共性错题
+     * @param ppt
+     */
+    private static void dealCommonError(XMLSlideShow ppt) {
+        XSLFSlide slide = ppt.createSlide();
+
+        //第一页需要加上04 班级共性错题
+        XSLFTextBox textBox = slide.createTextBox();
+        textBox.setAnchor(new Rectangle(30,20,200,30));
+        XSLFTextParagraph paragraph = getTextParagraph(textBox);
+        paragraph.setTextAlign(TextParagraph.TextAlign.LEFT);
+        XSLFTextRun title = getTextRun(paragraph);
+        title.setText("04  班级共性错题");
+        title.setFontColor(new Color(103, 178, 170));
+        title.setFontSize(18D);
+
+        XSLFTextBox textBox_title = slide.createTextBox();
+        textBox_title.setAnchor(new Rectangle(30,70,65,25));
+        textBox_title.setFillColor(new Color(103, 178, 170));
+        XSLFTextParagraph paragraph_title = getTextParagraph(textBox_title);
+        paragraph_title.setTextAlign(TextParagraph.TextAlign.LEFT);
+
+        XSLFTextRun title_question = getTextRun(paragraph_title);
+        title_question.setText(String.format("第%s题",2));
+        title_question.setFontColor(Color.white);
+        title_question.setFontSize(16D);
+
+        //班级得分率相关的
+        XSLFTextBox textBox_scoreRate = slide.createTextBox();
+        textBox_scoreRate.setAnchor(new Rectangle(100,73,550,15));
+        XSLFTextParagraph paragraph_scoreRate = getTextParagraph(textBox_scoreRate);
+        paragraph_scoreRate.setTextAlign(TextParagraph.TextAlign.LEFT);
+
+        XSLFTextRun title_scoreRate = getTextRun(paragraph_scoreRate);
+        title_scoreRate.setText(String.format("班级得分率:%s，年级得分率：%s，答对：%s人，答错：%s人","0.21%","45.99%",4,53));
+        title_scoreRate.setFontColor(Color.white);
+        title_scoreRate.setFontSize(12D);
+
+        //答错学生
+        XSLFTextBox textBox_errorPeople = slide.createTextBox();
+        textBox_errorPeople.setAnchor(new Rectangle(33,100,500,50));
+        XSLFTextParagraph paragraph_errorPeople = getTextParagraph(textBox_errorPeople);
+        paragraph_errorPeople.setTextAlign(TextParagraph.TextAlign.LEFT);
+
+        XSLFTextRun title_errorDesc= getTextRun(paragraph_errorPeople);
+        title_errorDesc.setText("答错学生:   ");
+        title_errorDesc.setFontColor(Color.RED);
+        title_errorDesc.setFontSize(8D);
+
+        XSLFTextRun title_errorPeople= getTextRun(paragraph_errorPeople);
+        title_errorPeople.setText("邓舒月、刁卉、李美仪、蔡浩霖、陈嘉利、陈铭诗、陈俊澄、陈文俊、李乐诗、耿言、李琦、孔炫斌、杜君豪、崔珏峥、任娟、" +
+                "潘紫恩、梁欣然15、陆悦、庞珊、罗兆俊、林梦茨、李扬波、刘丰铭、盘欣峒、欧洵傲、邱煜博、邵恩、徐义沣、吴雪静、先玺" +
+                "蓉、徐卓君、谢洋、许安琦、谢雅琪、谭晰元、向攀嵩、谢思进、徐雨菲、姚钧杰、许培昇、徐子琪、詹永濠、张炜锋、林敬" +
+                "圣、钟卓霖、邹乐欣、范轩毓、游智翔、郑依琪、张明哲、陈梓豪、张政、郑子莹");
+        title_errorPeople.setFontColor(Color.white);
+        title_errorPeople.setFontSize(8D);
+
+        //原题信息
+        XSLFTextBox textBox_question = slide.createTextBox();
+        textBox_question.setAnchor(new Rectangle(30,160,500,200));
+        textBox_question.setFillColor(Color.white);
+        XSLFTextParagraph paragraph_question = getTextParagraph(textBox_question);
+        paragraph_question.setTextAlign(TextParagraph.TextAlign.LEFT);
+
+        XSLFTextRun text_question = getTextRun(paragraph_question);
+        text_question.setText(String.format("在平面直角坐标系中，点 一定在第（ ）象限\n" +
+                "  A. 第一象限     B. 第二象限\n" +
+                "  C. 第三象限     D. 第四象限\n" +
+                "\n" +
+                "【答案】B\n" +
+                "【解析】\n" +
+                "∵点 它的横坐标 ，纵坐标 ， ∴符合点在第二象限的条件，故点 一定在第二象限．\n" +
+                "故选：B．\n",2));
+        text_question.setFontColor(Color.black);
+        text_question.setFontSize(9D);
+
+        dealErrorCase(ppt);
+    }
+
+    /**
+     * 处理案例题
+     * @param ppt
+     */
+    private static void dealErrorCase(XMLSlideShow ppt) {
+        XSLFSlide slide = ppt.createSlide();
+
+        //第一页需要案例题
+        XSLFTextBox textBox_title = slide.createTextBox();
+        textBox_title.setAnchor(new Rectangle(30,30,65,25));
+        textBox_title.setFillColor(new Color(254, 172, 104));
+        XSLFTextParagraph paragraph_title = getTextParagraph(textBox_title);
+        paragraph_title.setTextAlign(TextParagraph.TextAlign.LEFT);
+
+        XSLFTextRun title_question = getTextRun(paragraph_title);
+        title_question.setText("案例题");
+        title_question.setFontColor(Color.white);
+        title_question.setFontSize(16D);
+        //原题信息
+        XSLFTextBox textBox_question = slide.createTextBox();
+        textBox_question.setAnchor(new Rectangle(30,70,500,200));
+        textBox_question.setFillColor(Color.white);
+        XSLFTextParagraph paragraph_question = getTextParagraph(textBox_question);
+        paragraph_question.setTextAlign(TextParagraph.TextAlign.LEFT);
+
+        XSLFTextRun text_question = getTextRun(paragraph_question);
+        text_question.setText(String.format("在平面直角坐标系中，点 一定在第（ ）象限\n" +
+                "  A. 第一象限     B. 第二象限\n" +
+                "  C. 第三象限     D. 第四象限\n" +
+                "\n" +
+                "【答案】B\n" +
+                "【解析】\n" +
+                "∵点 它的横坐标 ，纵坐标 ， ∴符合点在第二象限的条件，故点 一定在第二象限．\n" +
+                "故选：B．\n",2));
+        text_question.setFontColor(Color.black);
+        text_question.setFontSize(9D);
     }
 
     /**
