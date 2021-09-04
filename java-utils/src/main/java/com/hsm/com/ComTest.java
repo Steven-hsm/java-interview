@@ -74,6 +74,5 @@ public class ComTest {
             //这里是让串口先接收到数据再重新发送数据
             Thread.sleep(1000);
         }
-
     }
 }
