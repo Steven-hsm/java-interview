@@ -1,3 +1,4 @@
+/*
 package com.hsm.ppt.spire;
 
 import com.spire.doc.Document;
@@ -6,12 +7,14 @@ import com.spire.doc.Section;
 import com.spire.doc.documents.Paragraph;
 import com.spire.doc.fields.omath.OfficeMath;
 
+*/
 /**
  * @Classname AddFormular
  * @Description TODO
  * @Date 2021/9/2 17:36
  * @Created by huangsm
- */
+ *//*
+
 public class AddFormular {
     public static void main(String[] args) {
         //新建Word示例，添加一个section
@@ -40,3 +43,4 @@ public class AddFormular {
         doc.dispose();
     }
 }
+*/
