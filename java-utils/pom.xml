@@ -75,7 +75,7 @@
         <dependency>
             <groupId>e-iceblue</groupId>
             <artifactId>spire.presentation.free</artifactId>
-            <version>3.9.0</version>
+            <version>4.1.6</version>
         </dependency>
 
         <dependency>

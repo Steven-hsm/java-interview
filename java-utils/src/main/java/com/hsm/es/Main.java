@@ -28,7 +28,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         RestHighLevelClient client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost("192.168.0.81", 9200, "http")));
+                RestClient.builder(new HttpHost("192.168.0.95", 9200, "http")));
 
         final Scroll scroll = new Scroll(TimeValue.timeValueMinutes(1L));
         SearchRequest searchRequest = new SearchRequest("student_score_single"); // 新建索引搜索请求
