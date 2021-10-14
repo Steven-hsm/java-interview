@@ -1,4 +1,4 @@
-package com.hsm.word.util;
+package com.hsm.word;
 
 import com.aspose.words.*;
 
