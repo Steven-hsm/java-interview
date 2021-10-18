@@ -1,5 +1,7 @@
 package com.hsm.ppt.demo;
 
+import org.apache.poi.hslf.usermodel.HSLFSlide;
+import org.apache.poi.hslf.usermodel.HSLFSlideShow;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 
@@ -22,11 +24,11 @@ public class PPT转换为图片 {
     public static void main(String args[]) throws IOException {
 
         //creating an empty presentation
-        XMLSlideShow ppt = new XMLSlideShow(new FileInputStream("202009271714291429.pptx"));
+        HSLFSlideShow  ppt = new HSLFSlideShow(new FileInputStream("C:\\Users\\steven\\Downloads\\202009271714291429(1).ppt"));
 
         //getting the dimensions and size of the slide
         Dimension pgsize = ppt.getPageSize();
-        List<XSLFSlide> slides = ppt.getSlides();
+        List<HSLFSlide> slides = ppt.getSlides();
 
         BufferedImage img = new BufferedImage(pgsize.width, pgsize.height, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics = img.createGraphics();

@@ -20,6 +20,7 @@
         <module>spring-file</module>
         <module>brain-boot</module>
         <module>spring-flowable</module>
+        <module>spring-data-redis</module>
     </modules>
     <dependencies>
         <!-- 测试类 -->
