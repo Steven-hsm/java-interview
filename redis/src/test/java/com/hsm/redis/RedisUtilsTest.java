@@ -2,6 +2,7 @@ package com.hsm.redis;
 
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisCluster;
 
 /**
  * @Classname redisUtilsTest
@@ -39,4 +40,11 @@ public class RedisUtilsTest {
         System.out.println(ping);
     }
 
+
+    @Test
+    public void clusterSet() {
+        JedisCluster cluster = RedisUtils.getClusterConnetion();
+        cluster.set("abc","2131231");
+
+    }
 }
