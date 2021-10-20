@@ -17,7 +17,9 @@ import com.spire.doc.fields.omath.OfficeMath;
 
 public class AddFormular {
     public static void main(String[] args) {
-        //新建Word示例，添加一个section
+        */
+/*//*
+/新建Word示例，添加一个section
         Document doc = new Document();
         Section section = doc.addSection();
 
@@ -40,7 +42,8 @@ public class AddFormular {
 
         //保存文档
         doc.saveToFile("addMathEquation.docx", FileFormat.Docx_2013);
-        doc.dispose();
+        doc.dispose();*//*
+
     }
 }
 */
