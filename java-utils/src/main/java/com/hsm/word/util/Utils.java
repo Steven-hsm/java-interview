@@ -1,3 +1,4 @@
+/*
 package com.hsm.word.util;
 
 import java.io.File;
@@ -48,3 +49,4 @@ public class Utils {
     }
 
 }
+*/
