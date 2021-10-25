@@ -73,6 +73,7 @@ public class ComTest {
             serialPort.writeBytes(msg.getBytes(),msg.getBytes().length);
             //这里是让串口先接收到数据再重新发送数据
             Thread.sleep(1000);
+
         }
     }
 }
