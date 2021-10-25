@@ -17,6 +17,7 @@ interface Shape {
     void draw();
 }
 
+//工厂，通过工厂来创建产品
 class ShapeFactory {
     public static Shape getShape(Class clazz) {
         if (clazz.isAssignableFrom(Rectangle.class)) {
