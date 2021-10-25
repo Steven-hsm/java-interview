@@ -14,7 +14,7 @@ public class AddPPt {
 
     public static void main(String[] args) throws Exception {
         //实例化一个PPT对象
-        Presentation ppt = new Presentation();
+        //Presentation ppt = new Presentation();
         /*//获取第一张幻灯片中的shapes
         ShapeList shapes = ppt.getSlides().get(0).getShapes();
         //插入HTML到shapes
@@ -22,6 +22,6 @@ public class AddPPt {
         shapes.addFromHtml(code);
         //保存文档*/
         String outputFile = "output/result2.pptx";
-        ppt.saveToFile(outputFile, FileFormat.PPTX_2010);
+        //ppt.saveToFile(outputFile, FileFormat.PPTX_2010);
     }
 }

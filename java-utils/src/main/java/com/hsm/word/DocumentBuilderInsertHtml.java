@@ -1,3 +1,4 @@
+/*
 package com.hsm.word;
 
 
@@ -5,12 +6,14 @@ import com.aspose.words.Document;
 import com.aspose.words.DocumentBuilder;
 import com.hsm.word.util.Utils;
 
+*/
 /**
  * @Classname DocumentBuilderInsertHtml
  * @Description TODO
  * @Date 2021/6/18 10:15
  * @Created by huangsm
- */
+ *//*
+
 public class DocumentBuilderInsertHtml {
 
     public static void main(String[] args) throws Exception {
@@ -37,3 +40,4 @@ public class DocumentBuilderInsertHtml {
         //ExEnd:DocumentBuilderInsertHtml
     }
 }
+*/
