@@ -4,7 +4,7 @@ import lombok.Data;
 
 public class 责任链模式 {
     public static void main(String[] args) {
-        new Request(1, 31000, 1)
+        new Request(1, 31000, 1);
     }
 }
 
