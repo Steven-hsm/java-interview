@@ -16,7 +16,13 @@
             <artifactId>jol-core</artifactId>
             <version>0.9</version>
         </dependency>
-
+        <!-- 测试类 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <parent>
