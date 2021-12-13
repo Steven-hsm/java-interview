@@ -8,7 +8,7 @@ package com.hsm.java.design;
  */
 public class 单例模式 {
     /**
-     * 一个类智能存在一个对象实例
+     * 一个类只能存在一个对象实例
      *
      * @param args
      */

@@ -37,4 +37,6 @@ public class RedisUtils {
         JedisCluster jedisCluster = new JedisCluster(jedisClusterNode, 6000, 5000, 10, "redis-pw", config);
         return jedisCluster;
     }
+
+
 }

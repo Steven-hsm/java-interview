@@ -157,4 +157,5 @@ hs_err_pid*
 **/.idea/**
 *-local.yml
 **/*.iml
+**/.local-browser/**
 

@@ -44,5 +44,15 @@ Web上下文模块建立在应用程序上下文模块之上，为基于Web的�
 
 该模块支持使用JUnit或TestNG对Spring组件进行单元测试和集成测试  
 
+**源码编译**
+
+Spring中文翻译地址:https://github.com/DocsHome/spring-docs/blob/master/SUMMARY.md
+
+Spring 源码编译参考博客:https://note.youdao.com/ynoteshare/index.html?id=c18f0f8b8bae3dd7e4ff292f043fe932&type=note&_time=1638588582828
+
+我自己编译的地址（5.2.6.BUILD-SNAPSHOT）：https://github.com/Steven-hsm/spring-framework
+
+
+
 
 
