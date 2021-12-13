@@ -9,6 +9,14 @@
 
 ### 2. 使用代码
 
+```xml
+<dependency>
+    <groupId>cglib</groupId>
+    <artifactId>cglib</artifactId>
+    <version>3.2.5</version>
+</dependency>
+```
+
 #### 2.1 被代理类
 
 ```java
