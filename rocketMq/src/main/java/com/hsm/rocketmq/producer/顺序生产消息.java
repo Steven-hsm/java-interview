@@ -21,12 +21,10 @@ public class 顺序生产消息 {
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer("myConsumer");
 
-        producer.setNamesrvAddr("192.168.106.133:9876");
-
+        producer.setNamesrvAddr("192.168.148.133:9876");
         producer.start();
 
         String[] tags = new String[]{"TagA", "TagC", "TagD"};
-
         // 订单列表
         List<OrderStep> orderList = new 顺序生产消息().buildOrders();
 
@@ -36,7 +34,7 @@ public class 顺序生产消息 {
         for (int i = 0; i < 10; i++) {
             // 加个时间前缀
             String body = dateStr + " Hello RocketMQ " + orderList.get(i);
-            Message msg = new Message("TopicTest", tags[i % tags.length], "KEY" + i, body.getBytes());
+            Message msg = new Message("TopicOrder", tags[i % tags.length], "KEY" + i, body.getBytes());
 
             SendResult sendResult = producer.send(msg, new MessageQueueSelector() {
                 @Override

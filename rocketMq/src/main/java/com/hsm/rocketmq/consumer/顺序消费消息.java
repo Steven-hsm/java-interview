@@ -20,15 +20,13 @@ import java.util.concurrent.TimeUnit;
 public class 顺序消费消息 {
     public static void main(String[] args) throws Exception {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("myProducer");
-        consumer.setNamesrvAddr("192.168.106.133:9876");
+        consumer.setNamesrvAddr("192.168.148.133:9876");
         /**
          * 设置Consumer第一次启动是从队列头部开始消费还是队列尾部开始消费<br>
          * 如果非第一次启动，那么按照上次消费的位置继续消费
          */
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
-
-        consumer.subscribe("TopicTest", "TagA || TagC || TagD");
-
+        consumer.subscribe("TopicOrder", "TagA || TagC || TagD");
         consumer.registerMessageListener(new MessageListenerOrderly() {
 
             Random random = new Random();
@@ -49,9 +47,7 @@ public class 顺序消费消息 {
                 return ConsumeOrderlyStatus.SUCCESS;
             }
         });
-
         consumer.start();
-
         System.out.println("Consumer Started.");
     }
 }

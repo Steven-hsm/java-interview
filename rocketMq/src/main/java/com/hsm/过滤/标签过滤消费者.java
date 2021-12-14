@@ -35,9 +35,7 @@ public class 标签过滤消费者 {
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });
-
         consumer.start();
-
         System.out.printf("Consumer Started.%n");
     }
 }

@@ -24,7 +24,6 @@ public class 过滤生产者 {
         producer.start();
         //消息发送到不同的tag上
         String[] tags = new String[]{"TagA", "TagB", "TagC"};
-
         for (int i = 0; i < 60; i++) {
             Message msg = new Message("FilterTopic",
                     tags[i % tags.length],

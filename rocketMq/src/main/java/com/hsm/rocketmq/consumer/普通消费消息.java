@@ -24,7 +24,7 @@ public class 普通消费消息 {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("myConsumer");
 
         // 设置NameServer的地址
-        consumer.setNamesrvAddr("192.168.0.164:9876");
+        consumer.setNamesrvAddr("192.168.148.133:9876");
 
         // 订阅一个或者多个Topic，以及Tag来过滤需要消费的消息
         consumer.subscribe("TopicTest", "*");
