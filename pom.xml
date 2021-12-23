@@ -9,20 +9,20 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
-     <modules>
-         <module>java-learn</module>
-         <module>linux</module>
-         <module>mysql</module>
-         <module>java-spring</module>
-         <module>redis</module>
-         <module>data-structure</module>
-         <module>docker</module>
-         <module>java-leetcode</module>
-         <module>other</module>
-         <module>rocketMq</module>
-         <module>java-utils</module>
-         <!--<module>flowable</module>-->
-     </modules>
+    <modules>
+        <module>java-learn</module>
+        <module>linux</module>
+        <module>mysql</module>
+        <module>java-spring</module>
+        <module>redis</module>
+        <module>data-structure</module>
+        <module>docker</module>
+        <module>java-leetcode</module>
+        <module>other</module>
+        <module>rocketMq</module>
+        <module>java-utils</module>
+        <!--<module>flowable</module>-->
+    </modules>
 
     <dependencies>
         <dependency>
@@ -43,15 +43,16 @@
             <version>[2.0.0,3.0.0)</version>
         </dependency>
         <dependency>
-        <groupId>org.apache.curator</groupId>
-        <artifactId>curator‐recipes</artifactId>
-        <version>5.0.0</version>
-        <exclusions>
-        <exclusion>
-        <groupId>org.apache.zookeeper</groupId>
-        <artifactId>zookeeper</artifactId>
-        </exclusion>
-        </exclusions>
+            <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>5.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
