@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description:
  **/
 
-@MapperScan("com.roy.shardingDemo.mapper")
+@MapperScan("com.hsm.sharding.mapper")
 @SpringBootApplication
 public class ShardingJDBCApplication {
     public static void main(String[] args) {
