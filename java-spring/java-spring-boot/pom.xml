@@ -23,6 +23,8 @@
         <module>spring-data-redis</module>
         <module>spring-tl-bean</module>
         <module>spring-boot-mongo</module>
+        <module>spring-boot-test</module>
+        <module>hsm-spring-boot-starter</module>
     </modules>
     <dependencies>
         <!-- 测试类 -->
