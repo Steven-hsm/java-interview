@@ -17,10 +17,10 @@ public class TestJDKClassloader {
             System.out.println(urL);
         }
 
-        System.out.println("extClassLoader加载以下文件:");
+        System.out.print("extClassLoader加载以下文件:");
         System.out.println(System.getProperty("java.ext.dirs"));
 
-        System.out.println("appClassLoader加载以下文件:");
+        System.out.print("appClassLoader加载以下文件:");
         System.out.println(System.getProperty("java.class.path"));
     }
 }

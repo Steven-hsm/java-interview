@@ -2,33 +2,34 @@ package com.hsm.java.jvm;
 
 import java.io.FileInputStream;
 
-public class MyClassLoaderTest {
+public class MyClassLoaderTest1 {
     public static void main(String[] args) throws Exception {
-        MyClassLoader classLoader=new MyClassLoader("D:/test");
-        Class clazz = classLoader.loadClass("com.hsm.thread.entity.User");
+        MyClassLoader1 classLoader = new MyClassLoader1("E:\\github\\java-interview\\java-learn\\target\\classes");
+        Class clazz = classLoader.loadClass("com.hsm.java.jvm.MyClassLoaderTest1");
         Object obj = clazz.newInstance();
         System.out.println(clazz.getClassLoader().getClass().getName());
     }
 
 
-    static class MyClassLoader extends ClassLoader {
+    static class MyClassLoader1 extends ClassLoader {
         private String classPath;
 
-        public MyClassLoader(String classPath) {
+        public MyClassLoader1(String classPath) {
             this.classPath = classPath;
         }
 
         @Override
-        public Class<?> findClass(String name) throws ClassNotFoundException {
-            byte[] data = new byte[0];
+        protected Class<?> findClass(String name) throws ClassNotFoundException {
             try {
-                data = loadByte(name);
+                byte[] data = loadByte(name);
+                //defineClass将一个字节数组转为Class对象，这个字节数组是class文件读取后最终的字节 数组。
                 return defineClass(name, data, 0, data.length);
             } catch (Exception e) {
                 throw new ClassNotFoundException();
             }
 
         }
+
         private byte[] loadByte(String name) throws Exception {
             name = name.replaceAll("\\.", "/");
             FileInputStream fis = new FileInputStream(classPath + "/" + name + ".class");
@@ -39,5 +40,4 @@ public class MyClassLoaderTest {
             return data;
         }
     }
-
 }
