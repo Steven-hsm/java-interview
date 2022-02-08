@@ -55,7 +55,7 @@ public class MyClassLoaderTest2 {
                     sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
                     sun.misc.PerfCounter.getFindClasses().increment();
 
-                }
+                } 
                 if (resolve) {
                     resolveClass(c);
                 }
