@@ -7,7 +7,11 @@ public class MyClassLoaderTest2 {
         MyClassLoader classLoader = new MyClassLoader("E:\\github\\java-interview\\java-learn\\target\\classes");
         Class clazz = classLoader.loadClass("com.hsm.java.jvm.MyClassLoaderTest2");
         Object obj = clazz.newInstance();
-        System.out.println(clazz.getClassLoader().getClass().getName());
+        System.out.println(clazz.getClassLoader());
+
+        MyClassLoader classLoader2 = new MyClassLoader("E:\\github\\java-interview\\java-learn\\target\\classes");
+        Class clazz2 = classLoader2.loadClass("com.hsm.java.jvm.MyClassLoaderTest2");
+        System.out.println(clazz2.getClassLoader());
     }
 
 
