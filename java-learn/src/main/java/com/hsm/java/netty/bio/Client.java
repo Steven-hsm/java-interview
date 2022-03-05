@@ -1,4 +1,4 @@
-package com.hsm.java.netty.pre01.bio;
+package com.hsm.java.netty.bio;
 
 import java.io.*;
 import java.net.Socket;

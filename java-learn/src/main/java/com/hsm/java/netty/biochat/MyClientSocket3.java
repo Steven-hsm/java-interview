@@ -1,4 +1,4 @@
-package com.hsm.java.netty.pre01.biochat;
+package com.hsm.java.netty.biochat;
 
 import java.io.*;
 import java.net.Socket;

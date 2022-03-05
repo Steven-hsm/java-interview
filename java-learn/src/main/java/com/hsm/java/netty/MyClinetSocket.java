@@ -1,4 +1,4 @@
-package com.hsm.java.netty.pre01;
+package com.hsm.java.netty;
 
 import java.io.*;
 import java.net.Socket;

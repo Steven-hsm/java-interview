@@ -8,6 +8,8 @@
 
 ## BIO
 
+![image-20220305102643433](C:\Users\steven\AppData\Roaming\Typora\typora-user-images\image-20220305102643433.png)
+
 ```java
 public static void main(String[] args) throws Exception {
     //1.ServerSocket 创建并监听端口的连接请求

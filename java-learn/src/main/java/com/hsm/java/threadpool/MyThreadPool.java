@@ -19,9 +19,11 @@ public class MyThreadPool {
         ExecutorService pool = Executors.newCachedThreadPool();
 
         try {
+            int ind = 0;
             for (int i = 0; i < 10; i++) {
+                int index = ind++;
                 pool.submit(() -> {
-                    System.out.println(Thread.currentThread().getName() + "\t" + "正在处理中");
+                    System.out.println(index);
                 });
             }
         } catch (Exception e) {

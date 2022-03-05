@@ -1,4 +1,4 @@
-package com.hsm.java.netty.pre01.nio.niochat;
+package com.hsm.java.netty.nio.niochat;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

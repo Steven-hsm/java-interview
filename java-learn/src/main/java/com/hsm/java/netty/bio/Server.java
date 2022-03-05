@@ -1,8 +1,14 @@
-package com.hsm.java.netty.pre01.bio;
+package com.hsm.java.netty.bio;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @Classname Server
@@ -10,24 +16,37 @@ import java.net.Socket;
  * @Date 2021/7/24 16:57
  * @Created by huangsm
  */
-public class Server{
-        public static void main(String[] args) {
-            try {
-                ServerSocket ss = new ServerSocket(8888);
-                System.out.println("启动服务器....");
-                Socket s = ss.accept();
-                System.out.println("客户端:"+s.getInetAddress().getLocalHost()+"已连接到服务器");
+@Slf4j
+public class Server {
 
-                BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
-                //读取客户端发送来的消息
-                String mess = br.readLine();
-                System.out.println("客户端："+mess);
+    private static Set<Socket> socketSet = new HashSet<>();
 
-                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
-                bw.write(mess+"\n");
-                bw.flush();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public static void main(String[] args) throws IOException {
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+        ServerSocket ss = new ServerSocket(8888);
+        log.info("服务器端监听8888端口，等待客户端连接");
+        while (true) {
+            Socket socket = ss.accept();
+            socketSet.add(socket);
+            executor.submit(() -> {
+                try {
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    while(true){
+                        String line = bufferedReader.readLine();
+                        for (Socket otherClientSocket : socketSet) {
+                            if(!otherClientSocket.equals(socket)){
+                                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(otherClientSocket.getOutputStream()));
+                                bufferedWriter.write(Thread.currentThread().getName() + ":" + line + "\n");
+                                bufferedWriter.flush();
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    log.error("获取数据异常", e);
+                }
+
+            });
         }
+
+    }
 }

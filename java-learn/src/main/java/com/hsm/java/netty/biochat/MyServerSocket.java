@@ -1,4 +1,4 @@
-package com.hsm.java.netty.pre01.biochat;
+package com.hsm.java.netty.biochat;
 
 import com.sun.media.jfxmedia.logging.Logger;
 
