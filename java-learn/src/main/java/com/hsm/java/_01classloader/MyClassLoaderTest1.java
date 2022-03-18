@@ -1,15 +1,15 @@
-package com.hsm.java.jvm;
+package com.hsm.java._01classloader;
 
 import java.io.FileInputStream;
 
 public class MyClassLoaderTest1 {
     public static void main(String[] args) throws Exception {
-        MyClassLoader1 classLoader = new MyClassLoader1("E:\\github\\java-interview\\java-learn\\target\\classes");
-        Class clazz = classLoader.loadClass("com.hsm.java.jvm.MyClassLoaderTest1");
+        MyClassLoader1 classLoader = new MyClassLoader1("E:\\test");
+        //这个类如果在本项目的target下，加载的回事应用程序类加载器加载
+        Class clazz = classLoader.loadClass("com.tuling.Start");
         Object obj = clazz.newInstance();
         System.out.println(clazz.getClassLoader().getClass().getName());
     }
-
 
     static class MyClassLoader1 extends ClassLoader {
         private String classPath;
