@@ -18,6 +18,7 @@ public class DataServiceTest {
 
     @Autowired
     private IDataService dataService;
+
     @Test
     public void saveData() {
         MyData myData = new MyData();

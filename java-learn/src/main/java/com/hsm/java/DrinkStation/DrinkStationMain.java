@@ -26,7 +26,7 @@ public class DrinkStationMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.getIcons().add(new Image("file:img.png")); //设置图标
+        stage.getIcons().add(new Image("file:jvm内存模型.png")); //设置图标
         stage.setTitle("DrinkStation Rev2.1-2017-11-28");//设置标题
         //网格布局
         VBox box1_1 = get1_1();
