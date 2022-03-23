@@ -45,6 +45,12 @@
             <artifactId>ant</artifactId>
             <version>1.6.5</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.2.1</version>
+        </dependency>
     </dependencies>
 
     <parent>
