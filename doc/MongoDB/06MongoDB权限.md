@@ -48,6 +48,7 @@ use admin
 db.createUser({user:"myroot",pwd:"123456",roles:["root"]})
 db.createUser({user:"myadmin",pwd:"123456",roles: [{role:"userAdminAnyDatabase",db:"admin"}]})
 db.system.users.find()
+
 db.dropUser("myadmin")
 db.changeUserPassword("myroot", "123456") 
 db.auth("myroot","12345")

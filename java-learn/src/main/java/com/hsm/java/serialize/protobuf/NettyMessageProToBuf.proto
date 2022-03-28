@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_package = "com.hsm.java.serialize.protobuf";
+option java_outer_classname = "NettyMessage";
+
+message NettyMessageProToBuff{
+  string requestId = 1;
+  int32 msgType = 2;
+  string data = 3;
+}
