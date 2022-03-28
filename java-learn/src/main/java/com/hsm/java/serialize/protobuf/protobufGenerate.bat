@@ -1,0 +1,1 @@
+protoc --proto_path=E:\github\java-interview\java-learn\src\main\java\com\hsm\java\serialize\protobuf --java_out=E:\github\java-interview\java-learn\src\main\java  E:\github\java-interview\java-learn\src\main\java\com\hsm\java\serialize\protobuf\*.proto
