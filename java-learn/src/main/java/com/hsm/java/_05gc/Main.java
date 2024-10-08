@@ -26,4 +26,7 @@ public class Main {
      *      并发重置
      *
      */
+    public static void main(String[] args) {
+
+    }
 }
