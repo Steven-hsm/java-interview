@@ -19,3 +19,8 @@ spring:
             - Path=/oschina
           filters: # 过滤器，对请求进行拦截，实现自定义的功能，对应 FilterDefinition 数组
             - StripPrefix=1
+  nacos:
+    discovery:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
